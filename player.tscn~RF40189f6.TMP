@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://tl8h8y2wqwa"]
+
+[ext_resource type="Script" uid="uid://g1c27hjlvkte" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://lafhpf1ilths" path="res://additive.tscn" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(16, 16)
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_onrkg")
+
+[node name="segments" type="Node2D" parent="."]
+
+[node name="root" parent="segments" instance=ExtResource("2_i3pqv")]
+z_index = 1
+
+[node name="eye1" type="Polygon2D" parent="segments/root"]
+position = Vector2(6, -3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="eye2" type="Polygon2D" parent="segments/root"]
+position = Vector2(6, 3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="itemdetector" type="Area2D" parent="segments/root"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="segments/root/itemdetector"]
+shape = SubResource("RectangleShape2D_onrkg")

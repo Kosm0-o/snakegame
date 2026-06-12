@@ -1,0 +1,290 @@
+[gd_scene load_steps=7 format=3 uid="uid://ntenp628wnp"]
+
+[ext_resource type="Script" uid="uid://c5th1qap82mpj" path="res://spiderboss.gd" id="1_7ihmo"]
+[ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="2_3kniw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqy47"]
+line_spacing = -33.445
+font = ExtResource("2_3kniw")
+font_size = 111
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.588235)
+shadow_offset = Vector2(5.855, 1)
+
+[sub_resource type="Animation" id="Animation_kqy47"]
+resource_name = "ready"
+
+[sub_resource type="Animation" id="Animation_3kniw"]
+resource_name = "shootwebs"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_webs"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkn7w"]
+_data = {
+&"ready": SubResource("Animation_kqy47"),
+&"shootwebs": SubResource("Animation_3kniw")
+}
+
+[node name="spiderboss" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_7ihmo")
+
+[node name="shape" type="Node2D" parent="."]
+
+[node name="webstring" type="Line2D" parent="shape"]
+position = Vector2(5, -12)
+points = PackedVector2Array(32, -250, 32, 10)
+width = 8.0
+
+[node name="offset" type="Node2D" parent="shape"]
+position = Vector2(37, 0)
+
+[node name="main" type="Node2D" parent="shape/offset"]
+position = Vector2(-37, 2)
+
+[node name="body" type="Node2D" parent="shape/offset/main"]
+
+[node name="ColorRect4" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 70.0
+offset_bottom = 70.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 49.0
+offset_bottom = 75.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 23.0
+offset_top = 72.0
+offset_right = 24.0
+offset_bottom = 75.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 49.0
+offset_top = 74.0
+offset_right = 56.0
+offset_bottom = 75.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 17.0
+offset_top = 74.0
+offset_right = 23.0
+offset_bottom = 75.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 17.0
+offset_top = 75.0
+offset_right = 18.0
+offset_bottom = 109.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect12" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 55.0
+offset_top = 75.0
+offset_right = 56.0
+offset_bottom = 109.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 18.0
+offset_top = 110.0
+offset_right = 54.0
+offset_bottom = 111.0
+scale = Vector2(1.05, 1.05)
+color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 47.0
+offset_top = 109.0
+offset_right = 51.0
+offset_bottom = 115.0
+color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 23.0
+offset_top = 109.0
+offset_right = 27.0
+offset_bottom = 115.0
+color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[node name="legs" type="Node2D" parent="shape/offset/main/body"]
+
+[node name="leg" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(5, -12)
+points = PackedVector2Array(-24, -6, -14.1721, 22.666, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg2" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(5, -12)
+points = PackedVector2Array(-40, 13, -27, 35, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg3" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(5, -12)
+points = PackedVector2Array(-38, 73, -26, 54, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg4" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(5, -12)
+points = PackedVector2Array(-22, 96, -18, 66, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg5" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(67, -12)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-24, -6, -14.1721, 22.666, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg6" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(67, -12)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-40, 13, -27, 35, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg7" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(67, -12)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-38, 73, -26, 54, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="leg8" type="Line2D" parent="shape/offset/main/body/legs"]
+position = Vector2(67, -12)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-22, 96, -18, 66, 13, 42)
+width = 6.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="shape/offset/main/body"]
+offset_right = 72.0
+offset_bottom = 72.0
+color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 48.0
+offset_bottom = 75.0
+color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape/offset/main/body"]
+offset_left = 17.5
+offset_top = 75.0
+offset_right = 54.5
+offset_bottom = 110.0
+color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[node name="eyes" type="Node2D" parent="shape/offset/main"]
+
+[node name="ColorRect" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 20.0
+offset_top = 98.0
+offset_right = 25.0
+offset_bottom = 103.0
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 29.0
+offset_top = 103.0
+offset_right = 34.0
+offset_bottom = 108.0
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 40.0
+offset_top = 103.0
+offset_right = 45.0
+offset_bottom = 108.0
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 48.0
+offset_top = 98.0
+offset_right = 53.0
+offset_bottom = 103.0
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 17.525
+offset_top = 98.13
+offset_right = 17.975
+offset_bottom = 103.13
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 54.515
+offset_top = 98.0
+offset_right = 54.965
+offset_bottom = 103.0
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 45.0
+offset_top = 110.0
+offset_right = 45.45
+offset_bottom = 115.0
+rotation = 1.5708
+color = Color(0.61231, 0, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="shape/offset/main/eyes"]
+offset_left = 34.0
+offset_top = 110.0
+offset_right = 34.45
+offset_bottom = 115.0
+rotation = 1.5708
+color = Color(0.61231, 0, 0, 1)
+
+[node name="introtext" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="introtext"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = 386.0
+offset_top = 202.0
+offset_right = 766.0
+offset_bottom = 445.0
+text = "Chapter 1:
+Spooder"
+label_settings = SubResource("LabelSettings_kqy47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="attackplayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mkn7w")
+}
