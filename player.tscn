@@ -1,17 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://tl8h8y2wqwa"]
+[gd_scene load_steps=9 format=3 uid="uid://tl8h8y2wqwa"]
 
 [ext_resource type="Script" uid="uid://g1c27hjlvkte" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="AudioStream" uid="uid://dytl4lrc7xqui" path="res://freesound_community-snake-hissing-6092.mp3" id="3_hqtel"]
+[ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://dcil0e13bvb0t" path="res://lightning-blade-sfx.mp3" id="4_hqtel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(16, 16)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 0.635294)
+border_color = Color(0.227451, 0.227451, 0.227451, 0.635294)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.6, 0.6, 0.6, 0.815686)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_2hs0m"]
+font = ExtResource("3_i3pqv")
+font_size = 36
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
 [node name="player" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="segments" type="Node2D" parent="."]
 
 [node name="root" type="Node2D" parent="segments"]
 z_index = 2
+
+[node name="tongue" type="Node2D" parent="segments/root"]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="segments/root/tongue"]
+points = PackedVector2Array(0, 0, 4, 0)
+width = 3.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="segments/root/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, -3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="segments/root/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, 3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Polygon2D2" type="Polygon2D" parent="segments/root"]
 color = Color(0, 0.754301, 7.70092e-07, 1)
@@ -98,9 +156,10 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="effects" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="."]
 
-[node name="slow" type="Control" parent="effects"]
+[node name="slow" type="Control" parent="ui"]
+visible = false
 custom_minimum_size = Vector2(26.255, 44.28)
 layout_mode = 3
 anchors_preset = 0
@@ -110,14 +169,16 @@ offset_right = 1127.26
 offset_bottom = 635.28
 tooltip_text = "Slowness"
 
-[node name="ColorRect" type="ColorRect" parent="effects/slow"]
+[node name="ColorRect" type="ColorRect" parent="ui/slow"]
+layout_mode = 0
 offset_top = 18.0
 offset_right = 26.0
 offset_bottom = 44.0
 mouse_filter = 2
 color = Color(0, 0.65098, 1, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="effects/slow"]
+[node name="ColorRect2" type="ColorRect" parent="ui/slow"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 9.0
 offset_right = 20.0
@@ -125,9 +186,46 @@ offset_bottom = 28.0
 mouse_filter = 2
 color = Color(0, 0.65098, 1, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="effects/slow"]
+[node name="ColorRect3" type="ColorRect" parent="ui/slow"]
+layout_mode = 0
 offset_left = 9.0
 offset_right = 16.0
 offset_bottom = 20.0
 mouse_filter = 2
 color = Color(0, 0.65098, 1, 1)
+
+[node name="ability1" type="Control" parent="ui"]
+modulate = Color(1, 1, 1, 0.290196)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="ui/ability1"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 249.0
+offset_right = 24.0
+offset_bottom = 390.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hqtel")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sweqy")
+fill_mode = 3
+show_percentage = false
+
+[node name="z" type="Label" parent="ui/ability1"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 398.0
+offset_right = 53.0
+offset_bottom = 437.0
+text = "Z"
+label_settings = SubResource("LabelSettings_2hs0m")
+
+[node name="hiss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hqtel")
+volume_db = 24.0
+pitch_scale = 1.99
+
+[node name="lightning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hqtel")
+volume_db = 1.036

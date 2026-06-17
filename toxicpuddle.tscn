@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://sjk68cnrn2yu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rs4fl"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skdnw"]
+size = Vector2(16, 16)
+
+[node name="toxicpuddle" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("CanvasItemMaterial_rs4fl")
+color = Color(0.222889, 1, 0.203496, 1)
+polygon = PackedVector2Array(10, -10, 10, 10, -10, 10, -10, -10)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_skdnw")
