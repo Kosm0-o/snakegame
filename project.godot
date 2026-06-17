@@ -73,3 +73,7 @@ ability2={
 2d_physics/layer_6="enemyattack"
 2d_physics/layer_7="playerattack"
 2d_physics/layer_8="enemy"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
