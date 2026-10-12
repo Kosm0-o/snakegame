@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dq7ebv1yat71c"
+path="res://.godot/imported/Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3-f2b3652c8727eb6cf778eca79c588f51.mp3str"
+
+[deps]
+
+source_file="res://sounds/Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3"
+dest_files=["res://.godot/imported/Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3-f2b3652c8727eb6cf778eca79c588f51.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=104.0
+beat_count=0
+bar_beats=4

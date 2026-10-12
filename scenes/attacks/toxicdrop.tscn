@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm6i5n74w05dm"]
+
+[ext_resource type="Script" uid="uid://dypbval0un1jb" path="res://scripts/toxicdrop.gd" id="1_lqqni"]
+
+[node name="toxicdrop" type="Node2D"]
+script = ExtResource("1_lqqni")
+
+[node name="shape" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(-3, -8)
+scale = Vector2(0.235, 0.309)
+
+[node name="ColorRect" type="ColorRect" parent="shape"]
+offset_top = 18.0
+offset_right = 26.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0, 0.886275, 0.00784314, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape"]
+offset_left = 5.0
+offset_top = 9.0
+offset_right = 20.0
+offset_bottom = 28.0
+mouse_filter = 2
+color = Color(0, 0.886275, 0.00784314, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape"]
+offset_left = 9.0
+offset_right = 16.0
+offset_bottom = 20.0
+mouse_filter = 2
+color = Color(0, 0.886275, 0.00784314, 1)

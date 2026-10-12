@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgl28nhjl5gjc"]
+
+[ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="1_dt0yg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcvua"]
+font = ExtResource("1_dt0yg")
+font_size = 330
+outline_size = 65
+outline_color = Color(0.176419, 0.176419, 0.176419, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.490196)
+shadow_offset = Vector2(6.21, 2.915)
+
+[node name="endscreen" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -38.0
+offset_right = 1259.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 644.0
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_gcvua")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl0cryxh78oa7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpy52"]
+size = Vector2(16, 16)
+
+[node name="item" type="Node2D"]
+
+[node name="shape" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="shape"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(10, -10, 10, 10, -10, 10, -10, -10)
+
+[node name="ColorRect2" type="ColorRect" parent="shape"]
+offset_left = -1.0
+offset_top = -17.0
+offset_right = 9.0
+offset_bottom = -14.0
+rotation = -0.404916
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape"]
+offset_left = -2.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = -13.0
+rotation = -0.606899
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape"]
+offset_left = -1.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = -13.0
+rotation = -0.308375
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="shape"]
+offset_left = -2.0
+offset_top = -17.0
+offset_right = 2.0
+offset_bottom = -10.0
+color = Color(0.405085, 0.18618, 4.81308e-08, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_vpy52")

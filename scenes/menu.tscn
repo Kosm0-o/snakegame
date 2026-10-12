@@ -1,0 +1,948 @@
+[gd_scene load_steps=21 format=3 uid="uid://cc3l1c674eoio"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="Script" path="res://scripts/pseudoplayer.gd" id="2_ouk20"]
+[ext_resource type="PackedScene" uid="uid://cyht5y0k2b8qf" path="res://scenes/additive.tscn" id="3_mae5d"]
+[ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="4_4hy44"]
+[ext_resource type="AudioStream" uid="uid://yr0kfe2pscc6" path="res://sounds/osu-hit-sound.mp3" id="5_l48gv"]
+[ext_resource type="AudioStream" uid="uid://dq7ebv1yat71c" path="res://sounds/Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3" id="5_ytr4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mae5d"]
+size = Vector2(16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ytr4m"]
+font = ExtResource("4_4hy44")
+font_size = 75
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.490196)
+shadow_offset = Vector2(6.21, 2.915)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hy44"]
+font = ExtResource("4_4hy44")
+font_size = 65
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.490196)
+shadow_offset = Vector2(6.21, 2.915)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l48gv"]
+font = ExtResource("4_4hy44")
+font_size = 41
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.47451)
+shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ecwwl"]
+font = ExtResource("4_4hy44")
+font_size = 15
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.47451)
+shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk3ma"]
+line_spacing = -9.645
+font = ExtResource("4_4hy44")
+font_size = 21
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.47451)
+shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nrnbx"]
+line_spacing = -9.645
+font = ExtResource("4_4hy44")
+font_size = 21
+font_color = Color(1, 0, 0, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.47451)
+shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqepy"]
+font = ExtResource("4_4hy44")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1wq0"]
+font = ExtResource("4_4hy44")
+font_size = 35
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.47451)
+shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hy44"]
+size = Vector2(1152, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytr4m"]
+size = Vector2(50, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l48gv"]
+size = Vector2(120, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecwwl"]
+size = Vector2(200, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk3ma"]
+size = Vector2(120, 80)
+
+[node name="menu" type="Node2D" node_paths=PackedStringArray("pseudoplayer")]
+script = ExtResource("1_lti8b")
+pseudoplayer = NodePath("pseudoplayer")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="testrect" type="ColorRect" parent="."]
+offset_left = -337.0
+offset_top = 120.0
+offset_right = -297.0
+offset_bottom = 160.0
+color = Color(5.55549e-05, 0.0661657, 0.291924, 1)
+
+[node name="pseudoplayer" type="Node2D" parent="."]
+position = Vector2(30, 31)
+script = ExtResource("2_ouk20")
+
+[node name="segments" type="Node2D" parent="pseudoplayer"]
+
+[node name="root" type="Node2D" parent="pseudoplayer/segments"]
+z_index = 2
+rotation = 4.71239
+
+[node name="tongue" type="Node2D" parent="pseudoplayer/segments/root"]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="pseudoplayer/segments/root/tongue"]
+points = PackedVector2Array(0, 0, 4, 0)
+width = 3.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="pseudoplayer/segments/root/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, -3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="pseudoplayer/segments/root/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, 3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Polygon2D2" type="Polygon2D" parent="pseudoplayer/segments/root"]
+color = Color(0, 0.754301, 7.70092e-07, 1)
+polygon = PackedVector2Array(10, -10, 10, 10, -10, 10, -10, -10)
+
+[node name="eye1" type="Polygon2D" parent="pseudoplayer/segments/root"]
+position = Vector2(6, -3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="eye2" type="Polygon2D" parent="pseudoplayer/segments/root"]
+position = Vector2(6, 3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="collisionarea" type="Area2D" parent="pseudoplayer/segments/root"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pseudoplayer/segments/root/collisionarea"]
+shape = SubResource("RectangleShape2D_mae5d")
+
+[node name="additive" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive2" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive3" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive4" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive5" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive6" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive7" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive8" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive9" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="additive10" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
+position = Vector2(-20, 0)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="beat" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Control" parent="ui/beat"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -25.0
+offset_top = -79.0
+offset_right = 15.0
+offset_bottom = -39.0
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/Title"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 40.0
+offset_right = 343.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="snake" type="Control" parent="ui/beat/Title"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="tongue" type="Node2D" parent="ui/beat/Title/snake"]
+position = Vector2(97, 58)
+scale = Vector2(1.77, 1.77)
+
+[node name="Line2D" type="Line2D" parent="ui/beat/Title/snake/tongue"]
+points = PackedVector2Array(0, 0, 4, 0)
+width = 3.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="ui/beat/Title/snake/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, -3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="ui/beat/Title/snake/tongue"]
+position = Vector2(1, 0)
+points = PackedVector2Array(7, 3, 3, 0)
+width = 2.0
+default_color = Color(1, 0.510787, 0.986421, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/Title/snake"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 47.0
+offset_right = 67.0
+offset_bottom = 109.0
+color = Color(0, 0.912759, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ui/beat/Title/snake"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 47.0
+offset_right = 100.0
+offset_bottom = 68.0
+color = Color(0, 0.912759, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ui/beat/Title/snake"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 90.0
+offset_right = 67.0
+offset_bottom = 111.0
+color = Color(0, 0.912759, 0, 1)
+
+[node name="eye1" type="Polygon2D" parent="ui/beat/Title/snake"]
+position = Vector2(95, 54)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="eye2" type="Polygon2D" parent="ui/beat/Title/snake"]
+position = Vector2(95, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-2, -1, 2, -1, 2, 1, -2, 1)
+
+[node name="nake" type="Control" parent="ui/beat/Title"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="leaf" type="Control" parent="ui/beat/Title/nake"]
+anchors_preset = 0
+offset_left = 151.0
+offset_top = 102.0
+offset_right = 191.0
+offset_bottom = 142.0
+rotation = -0.256563
+
+[node name="ColorRect9" type="ColorRect" parent="ui/beat/Title/nake/leaf"]
+layout_mode = 0
+offset_left = 2.07114
+offset_top = 0.509514
+offset_right = 12.0711
+offset_bottom = 3.50951
+rotation = 0.893609
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="ui/beat/Title/nake/leaf"]
+layout_mode = 0
+offset_left = 2.07116
+offset_top = -0.490471
+offset_right = 11.0712
+offset_bottom = 2.50953
+rotation = 0.771436
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="ui/beat/Title/nake/leaf"]
+layout_mode = 0
+offset_left = 2.07116
+offset_top = 1.50953
+offset_right = 10.0712
+offset_bottom = 4.50953
+rotation = 1.17635
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/Title/nake/leaf"]
+layout_mode = 0
+offset_left = 4.62363
+offset_top = 1.31461
+offset_right = 10.6236
+offset_bottom = 14.3146
+rotation = 2.62672
+color = Color(0.405085, 0.18618, 4.81308e-08, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 83.0
+offset_right = 91.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 86.0
+offset_right = 110.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 86.0
+offset_right = 131.0
+offset_bottom = 111.0
+color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 86.0
+offset_right = 148.0
+offset_bottom = 95.0
+color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 111.0
+offset_right = 157.0
+offset_bottom = 136.0
+rotation = 3.14159
+color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 111.0
+offset_right = 174.0
+offset_bottom = 120.0
+rotation = 3.14159
+color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 86.0
+offset_right = 110.0
+offset_bottom = 94.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect12" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 81.0
+offset_right = 299.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 86.0
+offset_right = 315.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 86.0
+offset_right = 318.0
+offset_bottom = 94.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect15" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 86.0
+offset_right = 331.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect16" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 86.0
+offset_right = 331.0
+offset_bottom = 94.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 81.0
+offset_right = 172.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 100.0
+offset_right = 184.0
+offset_bottom = 106.0
+rotation = 0.593412
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 98.0
+offset_right = 181.0
+offset_bottom = 104.0
+rotation = -0.486947
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect21" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 67.0
+offset_right = 253.0
+offset_bottom = 71.0
+rotation = 1.5708
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect22" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 72.0
+offset_right = 250.0
+offset_bottom = 78.0
+rotation = 1.5708
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect17" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 73.0
+offset_right = 263.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect18" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 73.0
+offset_right = 281.0
+offset_bottom = 84.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect20" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 100.0
+offset_right = 281.0
+offset_bottom = 111.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect19" type="ColorRect" parent="ui/beat/Title/nake"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 88.0
+offset_right = 272.0
+offset_bottom = 96.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="e" type="Control" parent="ui/beat/Title/nake"]
+anchors_preset = 0
+offset_left = 197.0
+offset_top = 99.0
+offset_right = 237.0
+offset_bottom = 139.0
+scale = Vector2(0.73, 0.73)
+
+[node name="ColorRect12" type="ColorRect" parent="ui/beat/Title/nake/e"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -14.0
+offset_right = -3.0
+offset_bottom = 16.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect13" type="ColorRect" parent="ui/beat/Title/nake/e"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -14.0
+offset_right = 12.0
+offset_bottom = -6.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="ui/beat/Title/nake/e"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -14.0
+offset_right = 12.0
+offset_bottom = 1.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect15" type="ColorRect" parent="ui/beat/Title/nake/e"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 12.0
+offset_bottom = 4.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="ColorRect16" type="ColorRect" parent="ui/beat/Title/nake/e"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 10.0
+offset_right = 12.0
+offset_bottom = 16.0
+color = Color(0, 0.850951, 0.927647, 1)
+
+[node name="presstostart" type="Label" parent="ui/beat"]
+layout_mode = 0
+offset_left = 296.5
+offset_top = 500.0
+offset_right = 855.5
+offset_bottom = 602.0
+text = "Press ←↑→ To Move"
+label_settings = SubResource("LabelSettings_ytr4m")
+
+[node name="play" type="Control" parent="ui/beat"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/play"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 140.0
+offset_bottom = 340.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="text" type="Label" parent="ui/beat/play"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 264.0
+offset_right = 127.0
+offset_bottom = 335.0
+text = "Play"
+label_settings = SubResource("LabelSettings_4hy44")
+
+[node name="abilities" type="Control" parent="ui/beat"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 120.0
+offset_bottom = 120.0
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/abilities"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 220.0
+offset_bottom = 340.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="text" type="Label" parent="ui/beat/abilities"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 264.0
+offset_right = 127.0
+offset_bottom = 335.0
+text = "Abilities"
+label_settings = SubResource("LabelSettings_4hy44")
+
+[node name="Quit" type="Control" parent="ui/beat"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 240.0
+offset_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/Quit"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 140.0
+offset_bottom = 340.0
+color = Color(0, 0, 0, 0.756863)
+
+[node name="text" type="Label" parent="ui/beat/Quit"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 264.0
+offset_right = 127.0
+offset_bottom = 335.0
+text = "Quit
+"
+label_settings = SubResource("LabelSettings_4hy44")
+
+[node name="abiltiespanel" type="Panel" parent="ui/beat"]
+process_mode = 3
+layout_mode = 0
+offset_left = 1169.0
+offset_top = 120.0
+offset_right = 1475.0
+offset_bottom = 442.0
+scale = Vector2(1.57, 1.57)
+
+[node name="header" type="Label" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 207.0
+offset_bottom = 44.0
+text = "Abilities"
+label_settings = SubResource("LabelSettings_l48gv")
+
+[node name="subtitle" type="Label" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 38.0
+offset_right = 209.0
+offset_bottom = 82.0
+text = "(hover for more info)"
+label_settings = SubResource("LabelSettings_ecwwl")
+
+[node name="shape" type="Control" parent="ui/beat/abiltiespanel"]
+anchors_preset = 0
+offset_left = 29.0
+offset_top = 73.0
+offset_right = 29.0
+offset_bottom = 73.0
+scale = Vector2(1.36, 1.36)
+
+[node name="Polygon2D" type="Polygon2D" parent="ui/beat/abiltiespanel/shape"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(10, -10, 10, 10, -10, 10, -10, -10)
+
+[node name="ColorRect2" type="ColorRect" parent="ui/beat/abiltiespanel/shape"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -17.0
+offset_right = 9.0
+offset_bottom = -14.0
+rotation = -0.404916
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ui/beat/abiltiespanel/shape"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = -13.0
+rotation = -0.606899
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ui/beat/abiltiespanel/shape"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = -13.0
+rotation = -0.308375
+color = Color(0.222704, 0.689522, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/abiltiespanel/shape"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -17.0
+offset_right = 2.0
+offset_bottom = -10.0
+color = Color(0.405085, 0.18618, 4.81308e-08, 1)
+
+[node name="apple" type="Label" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 63.0
+offset_right = 286.0
+offset_bottom = 86.0
+text = "Eat apples to shoot a fireball"
+label_settings = SubResource("LabelSettings_kk3ma")
+autowrap_mode = 3
+
+[node name="apple2" type="Label" parent="ui/beat/abiltiespanel/apple"]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 248.0
+offset_bottom = 23.0
+text = "apples"
+label_settings = SubResource("LabelSettings_nrnbx")
+autowrap_mode = 3
+
+[node name="z" type="Label" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 125.0
+offset_right = 128.0
+offset_bottom = 169.0
+text = "Z"
+label_settings = SubResource("LabelSettings_l48gv")
+
+[node name="Panel" type="Panel" parent="ui/beat/abiltiespanel/z"]
+layout_mode = 0
+offset_left = 45.0
+offset_right = 265.0
+offset_bottom = 40.0
+
+[node name="up" type="Button" parent="ui/beat/abiltiespanel/z"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -24.0
+offset_right = 226.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("4_4hy44")
+theme_override_font_sizes/font_size = 5
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/z/up"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -10.0
+offset_right = 107.0
+offset_bottom = 46.0
+text = "↑"
+label_settings = SubResource("LabelSettings_iqepy")
+
+[node name="down" type="Button" parent="ui/beat/abiltiespanel/z"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 64.0
+offset_right = 226.0
+offset_bottom = 86.0
+scale = Vector2(1, -1)
+theme_override_fonts/font = ExtResource("4_4hy44")
+theme_override_font_sizes/font_size = 5
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/z/down"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -10.0
+offset_right = 107.0
+offset_bottom = 46.0
+text = "↑"
+label_settings = SubResource("LabelSettings_iqepy")
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/z"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 265.0
+offset_bottom = 39.0
+tooltip_text = "Lightning Zap: Sacrifice 3 segments; Deals 3 Damage + Stun (press z key)"
+mouse_filter = 0
+text = "Lightning Zap"
+label_settings = SubResource("LabelSettings_h1wq0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x" type="Label" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 234.0
+offset_right = 128.0
+offset_bottom = 278.0
+text = "X"
+label_settings = SubResource("LabelSettings_l48gv")
+
+[node name="Panel" type="Panel" parent="ui/beat/abiltiespanel/x"]
+layout_mode = 0
+offset_left = 45.0
+offset_right = 265.0
+offset_bottom = 40.0
+
+[node name="up" type="Button" parent="ui/beat/abiltiespanel/x"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -24.0
+offset_right = 226.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("4_4hy44")
+theme_override_font_sizes/font_size = 5
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/x/up"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -10.0
+offset_right = 107.0
+offset_bottom = 46.0
+text = "↑"
+label_settings = SubResource("LabelSettings_iqepy")
+
+[node name="down" type="Button" parent="ui/beat/abiltiespanel/x"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 64.0
+offset_right = 226.0
+offset_bottom = 86.0
+scale = Vector2(1, -1)
+theme_override_fonts/font = ExtResource("4_4hy44")
+theme_override_font_sizes/font_size = 5
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/x/down"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -10.0
+offset_right = 107.0
+offset_bottom = 46.0
+text = "↑"
+label_settings = SubResource("LabelSettings_iqepy")
+
+[node name="Label" type="Label" parent="ui/beat/abiltiespanel/x"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 265.0
+offset_bottom = 39.0
+tooltip_text = "More Abilities Soon! (press x key)"
+mouse_filter = 0
+text = "N/A"
+label_settings = SubResource("LabelSettings_h1wq0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="exit" type="Button" parent="ui/beat/abiltiespanel"]
+layout_mode = 0
+offset_left = 270.701
+offset_top = 4.4586
+offset_right = 299.701
+offset_bottom = 35.4586
+text = "X"
+
+[node name="transition" type="Control" parent="ui"]
+z_index = 2476
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="tilesound" type="AudioStreamPlayer2D" parent="ui/transition"]
+stream = ExtResource("5_l48gv")
+volume_db = -3.0
+
+[node name="teleportareas" type="Node2D" parent="."]
+
+[node name="top" type="Area2D" parent="teleportareas"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleportareas/top"]
+position = Vector2(576, -25)
+shape = SubResource("RectangleShape2D_4hy44")
+
+[node name="bottom" type="Area2D" parent="teleportareas"]
+position = Vector2(0, 710)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleportareas/bottom"]
+position = Vector2(576, -25)
+shape = SubResource("RectangleShape2D_4hy44")
+
+[node name="left" type="Area2D" parent="teleportareas"]
+position = Vector2(0, 698)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleportareas/left"]
+position = Vector2(-25, -374)
+shape = SubResource("RectangleShape2D_ytr4m")
+
+[node name="right" type="Area2D" parent="teleportareas"]
+position = Vector2(1217, 698)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleportareas/right"]
+position = Vector2(-25, -374)
+shape = SubResource("RectangleShape2D_ytr4m")
+
+[node name="buttonareas" type="Node2D" parent="."]
+
+[node name="play" type="Area2D" parent="buttonareas"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buttonareas/play"]
+position = Vector2(80, 300)
+shape = SubResource("RectangleShape2D_l48gv")
+
+[node name="abilities" type="Area2D" parent="buttonareas"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buttonareas/abilities"]
+position = Vector2(120, 420)
+shape = SubResource("RectangleShape2D_ecwwl")
+
+[node name="quit" type="Area2D" parent="buttonareas"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buttonareas/quit"]
+position = Vector2(80, 540)
+shape = SubResource("RectangleShape2D_kk3ma")
+
+[node name="bgmusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ytr4m")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="pressed" from="ui/beat/abiltiespanel/exit" to="." method="_on_exit_pressed"]
+[connection signal="area_entered" from="buttonareas/play" to="." method="_on_play_area_entered"]
+[connection signal="area_entered" from="buttonareas/abilities" to="." method="_on_abilities_area_entered"]
+[connection signal="area_entered" from="buttonareas/quit" to="." method="_on_quit_area_entered"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqr72fk5e8f1"]
+
+[ext_resource type="Script" uid="uid://snrhgs8phlmw" path="res://scripts/laserattack.gd" id="1_yeyul"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8p7ep"]
+blend_mode = 1
+
+[node name="laserattack" type="Node2D"]
+script = ExtResource("1_yeyul")
+
+[node name="laser" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_8p7ep")
+points = PackedVector2Array(0, 0, 1152, 0)
+width = 1.0
+default_color = Color(0.999747, 0.245736, 0.188285, 1)
+
+[node name="detector" type="RayCast2D" parent="."]
+target_position = Vector2(1152, 0)
+collision_mask = 24
+collide_with_areas = true
+collide_with_bodies = false
