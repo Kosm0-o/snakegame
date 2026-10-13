@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3dj3087thcxg"]
+
+[ext_resource type="Script" uid="uid://bcmpvetmtn6ht" path="res://scripts/stingerprojectile.gd" id="1_hp8xv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8xv"]
+size = Vector2(180, 30)
+
+[node name="stingerprojectile" type="Node2D"]
+script = ExtResource("1_hp8xv")
+speed = 15.0
+
+[node name="stinger" type="Polygon2D" parent="."]
+position = Vector2(-401, -156)
+rotation = 1.5708
+scale = Vector2(5, 5)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(31, -79, 28, -90, 31, -115, 34, -90)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(86, -1)
+shape = SubResource("RectangleShape2D_hp8xv")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

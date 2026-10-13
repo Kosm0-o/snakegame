@@ -356,7 +356,6 @@ default_color = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(0, 113.145)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 0
 

@@ -78,6 +78,31 @@ autoplay = true
 stream = ExtResource("5_mxay4")
 volume_db = -3.0
 
-[node name="waspboss" parent="." instance=ExtResource("5_g8l4j")]
+[node name="waspboss" parent="." node_paths=PackedStringArray("markers") instance=ExtResource("5_g8l4j")]
+markers = NodePath("../markers")
+
+[node name="markers" type="Node2D" parent="."]
+
+[node name="origin" type="Marker2D" parent="markers"]
+position = Vector2(576, 0)
+gizmo_extents = 171.0
+
+[node name="dash" type="Node2D" parent="markers"]
+
+[node name="bottom" type="Marker2D" parent="markers/dash"]
+position = Vector2(576, 648)
+gizmo_extents = 171.0
+
+[node name="right" type="Marker2D" parent="markers/dash"]
+position = Vector2(1152, 324)
+gizmo_extents = 171.0
+
+[node name="top" type="Marker2D" parent="markers/dash"]
+position = Vector2(576, 0)
+gizmo_extents = 171.0
+
+[node name="left" type="Marker2D" parent="markers/dash"]
+position = Vector2(0, 324)
+gizmo_extents = 171.0
 
 [connection signal="area_entered" from="exitdetector" to="." method="_on_exitdetector_area_entered"]
