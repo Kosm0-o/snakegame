@@ -30,10 +30,6 @@ shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.588235)
 shadow_offset = Vector2(5.855, 1)
 
-[sub_resource type="Animation" id="Animation_kqy47"]
-resource_name = "ready"
-length = 5.0
-
 [sub_resource type="Animation" id="Animation_i4cpt"]
 resource_name = "dash"
 tracks/0/type = "method"
@@ -51,22 +47,9 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_6dkiy"]
-resource_name = "stingerspray"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"stingerspray"
-}]
-}
+[sub_resource type="Animation" id="Animation_kqy47"]
+resource_name = "ready"
+length = 5.0
 
 [sub_resource type="Animation" id="Animation_psgc1"]
 resource_name = "stingerslam"
@@ -82,6 +65,23 @@ tracks/0/keys = {
 "values": [{
 "args": [],
 "method": &"stinger_slam"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6dkiy"]
+resource_name = "stingerspray"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stingerspray"
 }]
 }
 

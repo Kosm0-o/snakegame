@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 		effectmodulate.color = lerp(effectmodulate.color, Color.WHITE, 3 * delta)
 
 func endscreen(win : bool):
-	var endscreen = preload("res://scenes/endscreen.tscn").instantiate()
+	var endscreen = load("res://scenes/endscreen.tscn").instantiate()
 	get_tree().current_scene.add_child(endscreen)
 	endscreen.get_node("Control").modulate.a = 0
 	endscreen.get_node("Control").get_node("Label").text = "YOU WIN!" if win else "YOU LOSE!"

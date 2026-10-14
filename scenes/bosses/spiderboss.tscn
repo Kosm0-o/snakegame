@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dmlnoxa03og7o"]
 
-[ext_resource type="Script" path="res://scripts/spiderboss.gd" id="1_7ihmo"]
+[ext_resource type="Script" uid="uid://c5th1qap82mpj" path="res://scripts/spiderboss.gd" id="1_7ihmo"]
 [ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="2_3kniw"]
 [ext_resource type="AudioStream" uid="uid://dqifmef8y3nyd" path="res://sounds/popsfx.mp3" id="3_mkn7w"]
 [ext_resource type="AudioStream" uid="uid://bbdhv8v2ce4ob" path="res://sounds/laserreverb.mp3" id="4_je360"]

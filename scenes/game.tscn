@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://rnagl74e5kcs"]
 
 [ext_resource type="PackedScene" uid="uid://dn1apjauo1a7b" path="res://scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://dgs4uk813lpda" path="res://gamemanager.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dmlnoxa03og7o" path="res://scenes/bosses/spiderboss.tscn" id="3_feb5d"]
 [ext_resource type="AudioStream" uid="uid://bt8vugkklqixj" path="res://sounds/482872_KzX---Stalemate.mp3" id="4_fc0e3"]
 [ext_resource type="AudioStream" uid="uid://yr0kfe2pscc6" path="res://sounds/osu-hit-sound.mp3" id="5_7jktm"]
