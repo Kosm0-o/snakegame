@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://buwvey0xrd1u2"]
+[gd_scene load_steps=16 format=3 uid="uid://buwvey0xrd1u2"]
 
 [ext_resource type="Script" uid="uid://cmhqknwtgpoed" path="res://scripts/waspboss.gd" id="1_i4cpt"]
 [ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="2_6dkiy"]
@@ -34,9 +34,63 @@ shadow_offset = Vector2(5.855, 1)
 resource_name = "ready"
 length = 5.0
 
+[sub_resource type="Animation" id="Animation_i4cpt"]
+resource_name = "dash"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dash"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6dkiy"]
+resource_name = "stingerspray"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stingerspray"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_psgc1"]
+resource_name = "stingerslam"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stinger_slam"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkn7w"]
 _data = {
-&"ready": SubResource("Animation_kqy47")
+&"dash": SubResource("Animation_i4cpt"),
+&"ready": SubResource("Animation_kqy47"),
+&"stingerslam": SubResource("Animation_psgc1"),
+&"stingerspray": SubResource("Animation_6dkiy")
 }
 
 [node name="waspboss" type="Node2D"]
@@ -312,6 +366,7 @@ polygon = PackedVector2Array(16, 37, -10, -72, -77, -90, 2, 37)
 [node name="hitbox" type="Area2D" parent="shape"]
 position = Vector2(-33.0303, 0)
 collision_layer = 32
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shape/hitbox"]

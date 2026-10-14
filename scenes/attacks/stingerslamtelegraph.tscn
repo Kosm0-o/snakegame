@@ -1,0 +1,149 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce1k3ijcjoe2i"]
+
+[sub_resource type="Animation" id="Animation_jbfop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("warning:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anim:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="Animation" id="Animation_knwl2"]
+resource_name = "flash"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("warning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"slam"]
+}
+
+[sub_resource type="Animation" id="Animation_pmeex"]
+resource_name = "slam"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3.28, 3.28), Vector2(13.05, 13.05), Vector2(25.045, 25.045)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67but"]
+_data = {
+&"RESET": SubResource("Animation_jbfop"),
+&"flash": SubResource("Animation_knwl2"),
+&"slam": SubResource("Animation_pmeex")
+}
+
+[node name="stingerslamtelegraph" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -6.5
+offset_top = -6.5
+offset_right = 6.5
+offset_bottom = 6.5
+rotation = 0.785398
+pivot_offset = Vector2(6.5, 6.5)
+color = Color(0, 0, 0, 1)
+
+[node name="warning" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Line2D" type="Line2D" parent="warning"]
+points = PackedVector2Array(-120, 0, 0, -120, 120, 0, 0, 120)
+closed = true
+default_color = Color(1, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="warning"]
+points = PackedVector2Array(0, -54, 0, 24)
+width = 16.24
+default_color = Color(1, 0, 0, 0.760784)
+
+[node name="Line2D3" type="Line2D" parent="warning"]
+position = Vector2(0, -12)
+points = PackedVector2Array(0, 52, 0, 69)
+width = 19.95
+default_color = Color(1, 0, 0, 0.760784)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_67but")
+}

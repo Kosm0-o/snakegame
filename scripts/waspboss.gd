@@ -2,7 +2,7 @@ extends Node2D
 
 @export var markers : Node2D
 
-var attacks : Array = ["dash", "stingerspray", "triplebite", "buzzbomb"]
+var attacks : Array = ["dash", "stingerspray", "stingerslam"]#, "buzzbomb"]
 var start : bool = false
 
 var maxhp : int = 64
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	if start and not $attackplayer.is_playing() and not attacking and not stunned:
 		attacking = true
 		var atk = attacks.pick_random()
-		stingerspray()#$attackplayer.play(atk)
+		$attackplayer.play(atk)
 
 func dash():
 	hide()
@@ -60,6 +60,7 @@ func dash():
 		await a.animation_finished
 	dashtelegraph.queue_free()
 	$shape/hitbox.set_deferred("monitorable", true)
+	$shape/hitbox.set_deferred("monitoring", true)
 	if not stunned:
 		var dtween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		var dpos = Vector2.ZERO
@@ -73,31 +74,59 @@ func dash():
 		await dtween.finished
 	global_position = markers.get_node("origin").global_position
 	$shape/hitbox.set_deferred("monitorable", false)
+	$shape/hitbox.set_deferred("monitoring", false)
 	var rtween2 = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	rtween2.tween_property($shape, "rotation_degrees", 0, 0.4)
 	await rtween2.finished
 	attacking = false
 
 func stingerspray():
+	if stunned: return
 	var stween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	var o = 64 * [1, -1].pick_random()
 	stween.tween_property(self, "rotation_degrees", 180 + o, 0.4)
 	await stween.finished
 	await get_tree().create_timer(1.5).timeout
-	var rtween = create_tween()
-	rtween.tween_property(self, "rotation_degrees", 180 - o, 3.0)
-	var instances = randi_range(3, 9)
-	for i in range(instances):
-		spawn_stinger()
-		await get_tree().create_timer(3.0 / instances).timeout
-	await rtween.finished
+	if not stunned:
+		var rtween = create_tween()
+		rtween.tween_property(self, "rotation_degrees", 180 - o, 3.0)
+		var instances = randi_range(3, 9)
+		for i in range(instances):
+			if stunned: continue
+			var tween = create_tween().set_ease(Tween.EASE_OUT)
+			var pos = global_position
+			tween.tween_property(self, "global_position", global_position + global_transform.y * 50, 0.2).set_trans(Tween.TRANS_BOUNCE)
+			tween.tween_property(self, "global_position", pos, 0.2).set_trans(Tween.TRANS_CUBIC)
+			var stinger = spawn_stinger()
+			stinger.global_position = $stingerpos.global_position
+			stinger.rotation_degrees = rotation_degrees - 90.0
+			await get_tree().create_timer(3.0 / instances).timeout
+	var rtween2 = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	rtween2.tween_property(self, "rotation_degrees", 0.0, 0.4)
+	await rtween2.finished
+	attacking = false
 
 func spawn_stinger():
 	var stinger = preload("res://scenes/attacks/stingerprojectile.tscn").instantiate()
 	get_tree().current_scene.add_child(stinger)
-	stinger.global_position = $stingerpos.global_position
-	stinger.rotation_degrees = rotation_degrees - 90.0
+	return stinger
 
+func stinger_slam():
+	if stunned: return
+	var telegraph = preload("res://scenes/attacks/stingerslamtelegraph.tscn").instantiate()
+	get_tree().current_scene.add_child(telegraph)
+	telegraph.global_position = global.player.snake.front() * global.tilesize + global.offset
+	var t : AnimationPlayer = telegraph.get_node("anim")
+	t.play("flash")
+	await t.animation_finished
+	if stunned: return
+	for i in range(8):
+		var stinger = spawn_stinger()
+		stinger.global_position = telegraph.global_position
+		stinger.rotation_degrees = (360 / 8) * i
+	telegraph.queue_free()
+	attacking = false
+	
 func damage(amt : int, color : Color):
 	hp -= amt
 	print(hp)
