@@ -13,6 +13,8 @@ var attacking : bool = false # for bugs/glitches
 var stunned : bool = false
 var stuntime : float = 0.0
 
+var time : float = 0.0
+
 func _ready() -> void:
 	randomize()
 	global.currentboss = self
@@ -28,6 +30,7 @@ func _ready() -> void:
 	start = true
 	
 func _process(delta: float) -> void:
+	time += delta
 	modulate = lerp(modulate, Color(1.0,1.0,1.0,0.7), 3 * delta)
 	if stuntime > 0.0:
 		stunned = true
@@ -39,6 +42,13 @@ func _process(delta: float) -> void:
 		attacking = true
 		var atk = attacks.pick_random()
 		$attackplayer.play(atk)
+	
+	for i in $shape/wings.get_children().size():
+		var wing = $shape/wings.get_child(i)
+		if i == 0:
+			wing.rotation_degrees = -14.0 + sin(25.0 * time) * 5.0
+		else:
+			wing.rotation_degrees = 14.0 + sin(-25.0 * time) * 5.0
 
 func dash():
 	hide()
@@ -81,7 +91,9 @@ func dash():
 	attacking = false
 
 func stingerspray():
-	if stunned: return
+	if stunned:
+		attacking = false
+		return
 	var stween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	var o = 64 * [1, -1].pick_random()
 	stween.tween_property(self, "rotation_degrees", 180 + o, 0.4)
@@ -112,14 +124,25 @@ func spawn_stinger():
 	return stinger
 
 func stinger_slam():
-	if stunned: return
+	if stunned:
+		attacking = false
+		return
 	var telegraph = preload("res://scenes/attacks/stingerslamtelegraph.tscn").instantiate()
 	get_tree().current_scene.add_child(telegraph)
 	telegraph.global_position = global.player.snake.front() * global.tilesize + global.offset
 	var t : AnimationPlayer = telegraph.get_node("anim")
 	t.play("flash")
 	await t.animation_finished
-	if stunned: return
+	if stunned:
+		attacking = false
+		telegraph.queue_free()
+		return
+	t.play("slam")
+	await t.animation_finished
+	if stunned:
+		attacking = false
+		telegraph.queue_free()
+		return
 	for i in range(8):
 		var stinger = spawn_stinger()
 		stinger.global_position = telegraph.global_position

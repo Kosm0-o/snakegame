@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb41wfbngo7ku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj2yn"]
+size = Vector2(104, 118)
+
+[sub_resource type="Animation" id="Animation_q8my0"]
+resource_name = "blow"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shape:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1.1, 1.4, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1), Vector2(1.285, 1.285), Vector2(1.13, 1.13), Vector2(1.435, 1.435), Vector2(1.305, 1.305), Vector2(2.865, 2.865)]
+}
+
+[sub_resource type="Animation" id="Animation_yhy6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shape:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wo6mh"]
+_data = {
+&"RESET": SubResource("Animation_yhy6h"),
+&"blow": SubResource("Animation_q8my0")
+}
+
+[node name="buzzbombs" type="Node2D"]
+
+[node name="shape" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
+[node name="ColorRect" type="ColorRect" parent="shape"]
+offset_left = -18.0
+offset_top = -26.0
+offset_right = 19.0
+offset_bottom = -2.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape"]
+offset_left = -26.0
+offset_top = -11.0
+offset_right = 26.0
+offset_bottom = 11.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape"]
+offset_left = -18.0
+offset_top = 1.0
+offset_right = 19.0
+offset_bottom = 25.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape"]
+offset_left = -18.0
+offset_top = -22.0
+offset_right = 19.0
+offset_bottom = -16.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape"]
+offset_left = -26.0
+offset_top = -9.0
+offset_right = 26.0
+offset_bottom = -3.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape"]
+offset_left = -26.0
+offset_top = 3.0
+offset_right = 26.0
+offset_bottom = 9.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="shape"]
+offset_left = -18.0
+offset_top = 17.0
+offset_right = 19.0
+offset_bottom = 23.0
+color = Color(0, 0, 0, 1)
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_yj2yn")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wo6mh")
+}
