@@ -2,7 +2,7 @@ extends Node2D
 
 @export var markers : Node2D
 
-var attacks : Array = ["dash", "stingerspray", "stingerslam"]#, "buzzbomb"]
+var attacks : Array = ["dash", "stingerspray", "stingerslam", "buzzbombs"]
 var start : bool = false
 
 var maxhp : int = 64
@@ -149,7 +149,35 @@ func stinger_slam():
 		stinger.rotation_degrees = (360 / 8) * i
 	telegraph.queue_free()
 	attacking = false
-	
+
+func buzzbombs():
+	if stunned:
+		attacking = false
+		return
+	var bombs : Array = []
+	for i in range(randi_range(2, 5)):
+		if stunned: break
+		var pos = Vector2(randf_range(25, 1152), randf_range(25, 648))
+		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self, "global_position", pos, 0.8)
+		tween.parallel().tween_property(self, "rotation", global_position.direction_to(pos).angle(), 0.8)
+		await tween.finished
+		if stunned: break
+		var bomb = preload("res://scenes/attacks/buzzbombs.tscn").instantiate()
+		get_tree().current_scene.add_child(bomb)
+		bomb.global_position = global_position
+		bomb.get_node("anim").play("blow")
+		bombs.append(bomb)
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "global_position", markers.get_node("origin").global_position, 0.4)
+	tween.parallel().tween_property(self, "rotation_degrees", 0, 0.4)
+	await tween.finished
+	attacking = false
+	if not stunned: await bombs.back().get_node("anim").animation_finished
+	for bomb in bombs:
+		if is_instance_valid(bomb):
+			bomb.queue_free()
+
 func damage(amt : int, color : Color):
 	hp -= amt
 	print(hp)

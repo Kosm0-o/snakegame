@@ -23,6 +23,8 @@ var attacking : bool = false # for bugs/glitches
 var stunned : bool = false
 var stuntime : float = 0.0
 
+var divider : float = 1.0
+
 
 func _ready() -> void:
 	randomize()
@@ -193,6 +195,7 @@ func shootlaser(eye):
 	$shape/offset/main/eyes/main.call_deferred("add_child", lasertelegraph)
 	lasertelegraph.position = eye.position
 	lasertelegraph.rotation_degrees = rot
+	lasertelegraph.get_node("anim").speed_scale = divider
 	await lasertelegraph.get_node("anim").animation_finished
 	lasertelegraph.get_node("anim").play("lockon")
 	await lasertelegraph.get_node("anim").animation_finished
@@ -233,8 +236,10 @@ func damage(amt : int, color : Color):
 	print(hp)
 	modulate = color
 	if hp <= maxhp / 4:
+		divider = 2.0
 		$attackplayer.speed_scale = 2.0
 	elif hp <= maxhp / 2:
+		divider = 1.5
 		$attackplayer.speed_scale = 1.5
 	if hp <= 0:
 		dead = true
