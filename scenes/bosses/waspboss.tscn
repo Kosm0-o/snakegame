@@ -417,10 +417,10 @@ shape = SubResource("RectangleShape2D_or21k")
 [node name="Label" type="Label" parent="introtext"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-offset_left = 386.0
-offset_top = 202.0
-offset_right = 766.0
-offset_bottom = 445.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 650.0
 text = "Chapter 2:
 Queen Wasp"
 label_settings = SubResource("LabelSettings_kqy47")

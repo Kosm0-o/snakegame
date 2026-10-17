@@ -15,7 +15,7 @@ var shape_lerp_vals : Dictionary = {
 	"bool": false
 }
 
-var maxhp : int = 48
+var maxhp : int = 1
 var hp : int = maxhp
 var dead : bool = false
 
@@ -86,7 +86,7 @@ func _process(delta: float) -> void:
 			shape_lerp_vals.bool = true
 
 func shoot_webs():
-	for i in range(int(randi_range(1, 8) * $attackplayer.speed_scale)):
+	for i in range(int(randi_range(1, 8) * divider)):
 		while global.sendingweb:
 			await get_tree().process_frame
 		shoot_web()
@@ -108,15 +108,15 @@ func shoot_eggs():
 	lerps.rotation = false
 	lerps.position = false
 	var tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	tween.tween_property($shape, "position:y", -50.0, 1.0 / $attackplayer.speed_scale)
+	tween.tween_property($shape, "position:y", -50.0, 1.0 / divider)
 	await tween.finished
-	for i in range(int(randi_range(1, 5) * $attackplayer.speed_scale)):
+	for i in range(int(randi_range(1, 5) * divider)):
 		while global.sendingweb:
 			await get_tree().process_frame
 		shoot_egg()
 	print("before tween")
 	var tween2 = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	tween2.tween_property($shape, "position:y", -241.625, 1.0 / $attackplayer.speed_scale)
+	tween2.tween_property($shape, "position:y", -241.625, 1.0 / divider)
 	print("during tween")
 	await tween2.finished
 	print("after tween")
@@ -129,14 +129,14 @@ func shoot_egg():
 	if dead: return
 	global.sendingweb = true
 	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($shape/offset, "position:y", 246, 0.2)
+	tween.tween_property($shape/offset, "position:y", 246, 0.2 / divider)
 	var eggshot = preload("res://spideregglaunch.tscn").instantiate()
 	eggshot.global_position = $shape.global_position
 	eggshot.global_position.y += 248
 	eggshot.targetpos = Vector2i(randi_range(1, global.mapsize.x - 1), randi_range(1, global.mapsize.y - 1))
 	$egg.play()
 	if not stunned: get_tree().current_scene.call_deferred("add_child", eggshot)
-	tween.tween_property($shape/offset, "position:y", 261, 0.2)
+	tween.tween_property($shape/offset, "position:y", 261, 0.2 / divider)
 
 
 func spit_venom():
@@ -148,17 +148,18 @@ func spit_venom():
 		droplet.rotation_degrees = randf_range(-25.0, 25.0)
 		droplet.position = $shape/offset/drops.position + Vector2(randf_range(-8.0, 8.0), 0)
 		$shape/offset.call_deferred("add_child", droplet)
-		await get_tree().create_timer(droplet.timer).timeout
+		await get_tree().create_timer(droplet.timer / divider).timeout
 	var f : bool = randf() > 0.5
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).set_parallel(true)
 	var m = 1 if not f else -1
-	tween.tween_property($shape, "rotation_degrees", 45.0 * m, 0.6 / $attackplayer.speed_scale)
+	tween.tween_property($shape, "rotation_degrees", 45.0 * m, 0.6 / divider)
 	var pos = Vector2(217.0, -216.0) if not f else Vector2(-224.0, -216.0)
-	tween.tween_property($shape, "position", pos, 0.6 / $attackplayer.speed_scale)
+	tween.tween_property($shape, "position", pos, 0.6 / divider)
 	var venomtelegraph = preload("res://venomtelegraph.tscn").instantiate()
 	venomtelegraph.global_position = Vector2(576.0, 0.0)
 	venomtelegraph.scale.x = -1 if not f else 1
 	get_tree().current_scene.call_deferred("add_child", venomtelegraph)
+	venomtelegraph.get_node("anim").speed_scale *= divider
 	await venomtelegraph.get_node("anim").animation_finished
 	if dead: return
 	venomtelegraph.call_deferred("queue_free")
@@ -167,6 +168,7 @@ func spit_venom():
 	if not stunned:
 		get_tree().current_scene.call_deferred("add_child", venomspit)
 		venomspit.global_position = Vector2.ZERO
+		venomspit.get_node("AnimationPlayer").speed_scale = divider
 		await venomspit.get_node("AnimationPlayer").animation_finished
 	lerps.rotation = true
 	lerps.position = true
@@ -175,7 +177,7 @@ func spit_venom():
 func shoot_lasers():
 	$shape/offset/main/eyes.material.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($shape/offset/main/eyes, "modulate", Color(1.5,1.5,1.5,1.5), 0.8 / $attackplayer.speed_scale)
+	tween.tween_property($shape/offset/main/eyes, "modulate", Color(1.5,1.5,1.5,1.5), 0.8 / divider)
 	await tween.finished
 	var amt = 0
 	for i in range(4):
@@ -195,7 +197,7 @@ func shootlaser(eye):
 	$shape/offset/main/eyes/main.call_deferred("add_child", lasertelegraph)
 	lasertelegraph.position = eye.position
 	lasertelegraph.rotation_degrees = rot
-	lasertelegraph.get_node("anim").speed_scale = divider
+	lasertelegraph.get_node("anim").speed_scale *= divider
 	await lasertelegraph.get_node("anim").animation_finished
 	lasertelegraph.get_node("anim").play("lockon")
 	await lasertelegraph.get_node("anim").animation_finished
@@ -207,7 +209,7 @@ func shootlaser(eye):
 	laser.position = eye.position
 	laser.rotation_degrees = rot
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property($shape/offset/main/eyes, "modulate", Color.WHITE, 0.5)
+	tween.tween_property($shape/offset/main/eyes, "modulate", Color.WHITE, 0.5 / divider)
 	$shape/offset/main/eyes.material.blend_mode = CanvasItemMaterial.BLEND_MODE_MIX
 	await tween.finished
 	attacking = false
@@ -258,7 +260,7 @@ func damage(amt : int, color : Color):
 			tween2.tween_property($shape/offset, "rotation_degrees", 90, 0.05).as_relative()
 		await tween.finished
 		global.currentboss = null
-		global.endscreen(true)
+		get_tree().current_scene.nextboss()
 		queue_free()
 		
 		

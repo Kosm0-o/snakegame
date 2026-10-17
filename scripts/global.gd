@@ -6,6 +6,7 @@ const offset : Vector2i = Vector2i(tilesize / 2, tilesize / 2)
 var effectmodulate : CanvasModulate = null
 var player : Player
 var currentboss 
+var bosses_beaten : int = 0
 
 #spider boss
 var webcount : int = 0
