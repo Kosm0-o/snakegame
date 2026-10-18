@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cc6g4yxf518m1"]
 
-[ext_resource type="Script" uid="uid://bkxonc1tp1uqx" path="res://scripts/lightningzap.gd" id="1_sqyn7"]
+[ext_resource type="Script" uid="uid://bkxonc1tp1uqx" path="res://lightningzap.gd" id="1_sqyn7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kxuku"]
 blend_mode = 1

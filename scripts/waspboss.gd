@@ -106,7 +106,7 @@ func stingerspray():
 		rtween.tween_property(self, "rotation_degrees", 180 - o, 3.0 / divider)
 		var instances = randi_range(3, 9)
 		for i in range(instances):
-			if stunned: continue
+			if stunned: break
 			var tween = create_tween().set_ease(Tween.EASE_OUT)
 			var pos = global_position
 			tween.tween_property(self, "global_position", global_position + global_transform.y * 50, 0.2 / divider).set_trans(Tween.TRANS_BOUNCE)
@@ -187,12 +187,17 @@ func damage(amt : int, color : Color):
 	print(hp)
 	modulate = color
 	if hp <= maxhp / 4:
+		if divider == 1.5:
+			global.effectmodulate.color = Color.RED
 		divider = 2.0
 		$attackplayer.speed_scale = 2.0
 	elif hp <= maxhp / 2:
+		if divider == 1.0:
+			global.effectmodulate.color = Color.RED
 		divider = 1.5
 		$attackplayer.speed_scale = 1.5
 	if hp <= 0:
+		global.boss_defeated.emit()
 		dead = true
 		get_tree().paused = true
 		queue_free()

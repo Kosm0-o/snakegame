@@ -92,7 +92,7 @@ func _on_play_area_entered(area: Area2D) -> void:
 			transtiles.append(Vector2i(x, y))
 	while not transtiles.is_empty():
 		await get_tree().process_frame
-	get_tree().call_deferred("change_scene_to_file","res://game.tscn")
+	get_tree().call_deferred("change_scene_to_file","res://scenes/game.tscn")
 
 func _on_quit_area_entered(area: Area2D) -> void:
 	get_tree().quit()

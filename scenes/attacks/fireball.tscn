@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt5axmvg8id11"]
 
-[ext_resource type="Script" path="res://scripts/fireball.gd" id="1_3s14c"]
+[ext_resource type="Script" uid="uid://wm4hq8i15pje" path="res://scripts/fireball.gd" id="1_3s14c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_olwj8"]
 

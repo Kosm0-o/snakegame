@@ -15,7 +15,7 @@ var shape_lerp_vals : Dictionary = {
 	"bool": false
 }
 
-var maxhp : int = 1
+var maxhp : int = 48
 var hp : int = maxhp
 var dead : bool = false
 
@@ -24,7 +24,6 @@ var stunned : bool = false
 var stuntime : float = 0.0
 
 var divider : float = 1.0
-
 
 func _ready() -> void:
 	randomize()
@@ -86,7 +85,7 @@ func _process(delta: float) -> void:
 			shape_lerp_vals.bool = true
 
 func shoot_webs():
-	for i in range(int(randi_range(1, 8) * divider)):
+	for i in range(int(randi_range(4, 12) * divider)):
 		while global.sendingweb:
 			await get_tree().process_frame
 		shoot_web()
@@ -101,6 +100,7 @@ func shoot_web():
 	webshot.dir = webshot.global_position.direction_to(Vector2(webshot.targetpos * global.tilesize))
 	webshot.rotation = webshot.dir.angle()
 	if not stunned: get_tree().current_scene.call_deferred("add_child", webshot)
+	webshot.speed *= divider
 	var mult = -1.0 if webshot.rotation < PI / 2 else 1.0
 	$shape/offset.rotation = webshot.rotation * mult / 2
 
@@ -238,12 +238,17 @@ func damage(amt : int, color : Color):
 	print(hp)
 	modulate = color
 	if hp <= maxhp / 4:
+		if divider == 1.5:
+			global.effectmodulate.color = Color.RED
 		divider = 2.0
 		$attackplayer.speed_scale = 2.0
 	elif hp <= maxhp / 2:
+		if divider == 1.0:
+			global.effectmodulate.color = Color.RED
 		divider = 1.5
 		$attackplayer.speed_scale = 1.5
 	if hp <= 0:
+		global.boss_defeated.emit()
 		dead = true
 		Engine.time_scale = 0.8
 		get_tree().paused = true

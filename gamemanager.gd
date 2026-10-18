@@ -13,7 +13,8 @@ func _ready() -> void:
 	spawn_item()
 	match global.bosses_beaten:
 		0:
-			spawn_spider()
+			spawn_wasp()
+			#spawn_spider()
 		1:
 			spawn_wasp()
 		2:
@@ -43,7 +44,7 @@ func spawn_next_tile():
 	
 
 func spawn_item():
-	var item = preload("res://item.tscn").instantiate()
+	var item = preload("res://scenes/item.tscn").instantiate()
 	call_deferred("add_child", item)
 	item.position = Vector2i(randi_range(1, global.mapsize.x - 1), randi_range(1, global.mapsize.y - 1)) * global.tilesize + global.offset
 

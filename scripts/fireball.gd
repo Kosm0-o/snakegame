@@ -5,6 +5,9 @@ var speed : float = 900.0
 var dmg : int = 1
 var time : float = 0.0
 
+func _ready() -> void:
+	global.boss_defeated.connect(queue_free)
+
 func _process(delta: float) -> void:
 	time += delta
 	scale = (sin(0.5 * time) * 0.5 + 0.6) * Vector2.ONE
