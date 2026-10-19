@@ -4,17 +4,17 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_olwj8"]
 
-[sub_resource type="Gradient" id="Gradient_wdani"]
+[sub_resource type="Gradient" id="Gradient_l5qua"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nix7o"]
-gradient = SubResource("Gradient_wdani")
+gradient = SubResource("Gradient_l5qua")
 
 [sub_resource type="Gradient" id="Gradient_m4vqi"]
 offsets = PackedFloat32Array(0, 0.618182, 0.754545, 0.863636, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.552941, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0.109804, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lk87q"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rnpk7"]
 gradient = SubResource("Gradient_m4vqi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gveuj"]
@@ -30,7 +30,7 @@ angular_velocity_max = 45.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.3
-color_ramp = SubResource("GradientTexture1D_lk87q")
+color_ramp = SubResource("GradientTexture1D_rnpk7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf4mh"]
 size = Vector2(137, 53)

@@ -9,7 +9,26 @@ const bpm : float = 104.0
 
 var transtiles : Array = []
 
+var zas : Array = []
+var xas : Array = []
+@onready var zlbl: Label = $ui/beat/abiltiespanel/z/Label
+@onready var xlbl: Label = $ui/beat/abiltiespanel/x/Label
+var zdx : int = 0
+var xdx : int = 0
+
+
+
 func _ready() -> void:
+	for c in find_children("*", "Control", true, false):
+		c.focus_mode = Control.FOCUS_NONE
+	zas = global.Z_A.keys()
+	xas = global.X_A.keys()
+	zlbl.text = zas.front()
+	xlbl.text = xas.front()
+	$ui/beat/abiltiespanel/z/up.pressed.connect(change_z_ability)
+	$ui/beat/abiltiespanel/z/down.pressed.connect(change_z_ability.bind(-1))
+	$ui/beat/abiltiespanel/x/up.pressed.connect(change_x_ability)
+	$ui/beat/abiltiespanel/x/down.pressed.connect(change_x_ability.bind(-1))
 	for x in range(global.mapsize.x - 75, global.mapsize.x + 1):
 		for y in range(global.mapsize.y - 50, global.mapsize.y + 1):
 				var rect = ColorRect.new()
@@ -37,6 +56,7 @@ func _ready() -> void:
 				b = true
 				p = -58
 		area.area_entered.connect(_set_head.bind(b, p))
+	
 
 func _process(delta: float) -> void:
 	if pseudoplayer.start and notstarttweened:
@@ -102,3 +122,18 @@ func _on_abilities_area_entered(area: Area2D) -> void:
 
 func _on_exit_pressed() -> void:
 	abilities_tween(true)
+
+
+func change_z_ability(delta : int = 1) -> void:
+	if (zdx == 0 and delta == 1) or (zdx == zas.size() - 1 and delta == -1):
+		return
+	zdx -= delta
+	zlbl.text = zas[zdx]
+	global.zability = zdx as global.Z_A
+	
+func change_x_ability(delta : int = 1) -> void:
+	if (xdx == 0 and delta == 1) or (xdx == xas.size() - 1 and delta == -1):
+		return
+	xdx -= delta
+	xlbl.text = xas[xdx]
+	global.xability = xdx as global.X_A

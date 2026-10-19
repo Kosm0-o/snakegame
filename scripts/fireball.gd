@@ -4,6 +4,7 @@ var dir : Vector2 = Vector2.RIGHT
 var speed : float = 900.0
 var dmg : int = 1
 var time : float = 0.0
+var burn : bool = false
 
 func _ready() -> void:
 	global.boss_defeated.connect(queue_free)
@@ -20,5 +21,13 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	area.get_parent().damage(dmg, Color("#ff170f"))
+	hide()
+	var rand = randi_range(3, 7)
+	if burn:
+		for i in range(int(rand/2)):
+			global.player._remove_segment()
+			await get_tree().process_frame
+	for i in range(rand if burn else 1):
+		area.get_parent().damage(dmg, Color("#ff170f"))
+		await get_tree().create_timer(0.5).timeout
 	queue_free()

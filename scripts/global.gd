@@ -10,6 +10,13 @@ var player : Player
 var currentboss 
 var bosses_beaten : int = 0
 
+# abilities
+enum Z_A {NONE, LIGHTNING, BURN, SLASH}
+enum X_A {NONE, SPEED, DAMAGE, INVINCIBILITY}
+var zability : Z_A = Z_A.NONE
+var xability : X_A = X_A.NONE
+
+
 #spider boss
 var webcount : int = 0
 var eggcount : int = 0
