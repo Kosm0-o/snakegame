@@ -115,6 +115,7 @@ func stingerspray():
 			stinger.global_position = $stingerpos.global_position
 			stinger.rotation_degrees = rotation_degrees - 90.0
 			await get_tree().create_timer((3.0 / divider) / instances).timeout
+	if stunned: await get_tree().create_timer(3.0).timeout
 	var rtween2 = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	rtween2.tween_property(self, "rotation_degrees", 0.0, 0.4 / divider)
 	await rtween2.finished

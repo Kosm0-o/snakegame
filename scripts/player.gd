@@ -96,6 +96,9 @@ func handle_fx(delta):
 	$ui/fx/slow.visible = spiderwebtimer > 0.0
 	$segments/root/angersymbol.scale = lerp($segments/root/angersymbol.scale, Vector2.ONE * 0.65, 7 * delta)
 	$ui/fx/fireball.visible = burn
+	$ui/fx/speed.visible = moveframenum < 10
+	$ui/fx/damage.visible = dmg_mult > 1.0
+	$ui/fx/shield.visible = inv
 
 func angry():
 	$segments/root/angersymbol.visible = true
