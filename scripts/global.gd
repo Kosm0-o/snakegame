@@ -1,6 +1,6 @@
 extends Node
 
-signal boss_defeated()
+signal boss_defeated(time : float)
 
 var mapsize : Vector2i = Vector2i(58, 33)
 const tilesize : int = 20
@@ -9,10 +9,15 @@ var effectmodulate : CanvasModulate = null
 var player : Player
 var currentboss 
 var bosses_beaten : int = 0
+var coins : int = 0
 
 # abilities
 enum Z_A {NONE, LIGHTNING, BURN, SLASH}
 enum X_A {NONE, SPEED, DAMAGE, INVINCIBILITY}
+var costs : Dictionary = {
+	"zability": [],
+	"xability": []
+}
 var zability : Z_A = Z_A.NONE
 var xability : X_A = X_A.NONE
 
@@ -22,6 +27,9 @@ var webcount : int = 0
 var eggcount : int = 0
 var puddlecount : int = 0
 var sendingweb : bool = false
+
+func _ready() -> void:
+	boss_defeated.connect(calculate_rewards)
 
 func _process(delta: float) -> void:
 	if is_instance_valid(effectmodulate):
@@ -34,3 +42,8 @@ func endscreen(win : bool):
 	endscreen.get_node("Control").get_node("Label").text = "YOU WIN!" if win else "YOU LOSE!"
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(endscreen.get_node("Control"), "modulate:a", 1.0, 0.8)
+
+func calculate_rewards(time : float):
+	# ((100 * segments) * boss number) / time to beat boss
+	var rewards : int = int(((100 * global.player.snake.size()) * (bosses_beaten + 1)) / time)
+	coins += rewards

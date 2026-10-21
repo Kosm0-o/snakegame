@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cy0mqddri741t"]
+[gd_scene load_steps=23 format=3 uid="uid://cy0mqddri741t"]
 
 [ext_resource type="Script" uid="uid://40hhrfmk3s15" path="res://menu.gd" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://4dnil2uhngox" path="res://pseudoplayer.gd" id="2_ouk20"]
@@ -74,6 +74,16 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.47451)
 shadow_offset = Vector2(1.755, 1.15)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3eks"]
+font = ExtResource("4_4hy44")
+font_size = 46
+font_color = Color(0.468425, 0.356981, 9.62615e-08, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
+font = ExtResource("4_4hy44")
+font_size = 66
+font_color = Color(0.833931, 0.639629, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hy44"]
 size = Vector2(1152, 50)
@@ -862,6 +872,61 @@ offset_top = 4.4586
 offset_right = 299.701
 offset_bottom = 35.4586
 text = "X"
+
+[node name="coins" type="Control" parent="ui/beat"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="ui/beat/coins"]
+layout_mode = 0
+offset_left = 862.0
+offset_right = 1153.0
+offset_bottom = 86.0
+
+[node name="coin" type="Control" parent="ui/beat/coins/Panel"]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 56.0
+offset_bottom = 49.0
+pivot_offset = Vector2(31.04, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ui/beat/coins/Panel/coin"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.369416, 0.277801, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ui/beat/coins/Panel/coin"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 57.0
+offset_bottom = 58.0
+color = Color(0.786958, 0.605211, 3.85046e-07, 1)
+
+[node name="Label" type="Label" parent="ui/beat/coins/Panel/coin"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 59.0
+offset_bottom = 58.0
+text = "$"
+label_settings = SubResource("LabelSettings_g3eks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ui/beat/coins/Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 6.0
+offset_right = 289.0
+offset_bottom = 78.0
+text = "0"
+label_settings = SubResource("LabelSettings_v86rl")
 
 [node name="transition" type="Control" parent="ui"]
 z_index = 2476

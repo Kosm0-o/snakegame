@@ -16,6 +16,8 @@ var xas : Array = []
 var zdx : int = 0
 var xdx : int = 0
 
+var pastcoins : int = 0
+
 
 
 func _ready() -> void:
@@ -56,9 +58,9 @@ func _ready() -> void:
 				b = true
 				p = -58
 		area.area_entered.connect(_set_head.bind(b, p))
-	
 
 func _process(delta: float) -> void:
+
 	if pseudoplayer.start and notstarttweened:
 		starttexttween()
 	time += delta
@@ -72,10 +74,21 @@ func _process(delta: float) -> void:
 		beat = curbeat
 		$ui/beat.position += Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	
+	$ui/beat/coins/Panel/coin.scale.x = sin(3 * time) * 1.0
+	
+	if pastcoins != global.coins:
+		coin_tween()
+	
+	
+	
+	pastcoins = global.coins
+	
 	if transtiles.is_empty(): return
 	for i in range(25):
 		if transtiles.is_empty(): break
 		spawn_next_tile()
+	
+	
 
 func spawn_next_tile():
 	$ui/transition/tilesound.play()
@@ -137,3 +150,13 @@ func change_x_ability(delta : int = 1) -> void:
 	xdx -= delta
 	xlbl.text = xas[xdx]
 	global.xability = xdx as global.X_A
+
+func coin_tween():
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_method(
+		func(val): $ui/beat/coins/Panel/Label.text = str(val),
+		pastcoins,
+		global.coins,
+		1.2
+	)
+	await tween.finished

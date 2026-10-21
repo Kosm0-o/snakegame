@@ -24,6 +24,7 @@ var stunned : bool = false
 var stuntime : float = 0.0
 
 var divider : float = 1.0
+var timer : float = 0.0
 
 func _ready() -> void:
 	randomize()
@@ -42,6 +43,8 @@ func _ready() -> void:
 	start = true
 
 func _process(delta: float) -> void:
+	if start:
+		timer += delta
 	modulate = lerp(modulate, Color(1.0,1.0,1.0,0.7), 3 * delta)
 	$shape/offset.position = lerp($shape/offset.position, Vector2(1, 261), 3 * delta) if lerps.position else $shape/offset.position
 	$shape/offset.rotation = lerpf($shape/offset.rotation, 0, 5 * delta) if lerps.rotation else $shape/offset.rotation
@@ -248,7 +251,7 @@ func damage(amt : int, color : Color):
 		divider = 1.5
 		$attackplayer.speed_scale = 1.5
 	if hp <= 0:
-		global.boss_defeated.emit()
+		global.boss_defeated.emit(timer)
 		dead = true
 		Engine.time_scale = 0.8
 		get_tree().paused = true
