@@ -105,6 +105,8 @@ func angry():
 	for i in range(4):
 		$segments/root/angersymbol.scale = Vector2.ONE * 2.5
 		while $segments/root/angersymbol.scale.x > 1.0:
+			if not is_inside_tree() or not get_tree():
+				break
 			await get_tree().process_frame
 	$segments/root/angersymbol.visible = false
 
@@ -196,6 +198,8 @@ func slash_barrage():
 		await get_tree().create_timer(0.25).timeout
 	for i in range(snake.size() - 1):
 		_remove_segment()
+		if not is_inside_tree() or not get_tree():
+			break
 		await get_tree().process_frame
 
 func speed_boost():

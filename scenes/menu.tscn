@@ -752,6 +752,13 @@ offset_left = 45.0
 offset_right = 265.0
 offset_bottom = 40.0
 
+[node name="buy" type="Button" parent="ui/beat/abiltiespanel/z/Panel"]
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 41.0
+tooltip_text = "Lightning Zap: Sacrifice 3 segments; Deals 3 Damage + Stun (press z key)"
+disabled = true
+
 [node name="up" type="Button" parent="ui/beat/abiltiespanel/z"]
 layout_mode = 0
 offset_left = 83.0
@@ -794,8 +801,6 @@ layout_mode = 0
 offset_left = 46.0
 offset_right = 265.0
 offset_bottom = 39.0
-tooltip_text = "Lightning Zap: Sacrifice 3 segments; Deals 3 Damage + Stun (press z key)"
-mouse_filter = 0
 text = "Lightning Zap"
 label_settings = SubResource("LabelSettings_h1wq0")
 horizontal_alignment = 1
@@ -815,6 +820,12 @@ layout_mode = 0
 offset_left = 45.0
 offset_right = 265.0
 offset_bottom = 40.0
+
+[node name="buy" type="Button" parent="ui/beat/abiltiespanel/x/Panel"]
+offset_right = 220.0
+offset_bottom = 41.0
+tooltip_text = "More Abilities Soon! (press x key)"
+disabled = true
 
 [node name="up" type="Button" parent="ui/beat/abiltiespanel/x"]
 layout_mode = 0
@@ -858,8 +869,6 @@ layout_mode = 0
 offset_left = 46.0
 offset_right = 265.0
 offset_bottom = 39.0
-tooltip_text = "More Abilities Soon! (press x key)"
-mouse_filter = 0
 text = "N/A"
 label_settings = SubResource("LabelSettings_h1wq0")
 horizontal_alignment = 1
@@ -1007,6 +1016,8 @@ stream = ExtResource("5_ytr4m")
 volume_db = -5.0
 autoplay = true
 
+[connection signal="pressed" from="ui/beat/abiltiespanel/z/Panel/buy" to="." method="_on_z_buy_pressed"]
+[connection signal="pressed" from="ui/beat/abiltiespanel/x/Panel/buy" to="." method="_on_x_buy_pressed"]
 [connection signal="pressed" from="ui/beat/abiltiespanel/exit" to="." method="_on_exit_pressed"]
 [connection signal="area_entered" from="buttonareas/play" to="." method="_on_play_area_entered"]
 [connection signal="area_entered" from="buttonareas/abilities" to="." method="_on_abilities_area_entered"]

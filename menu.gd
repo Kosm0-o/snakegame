@@ -141,15 +141,19 @@ func change_z_ability(delta : int = 1) -> void:
 	if (zdx == 0 and delta == 1) or (zdx == zas.size() - 1 and delta == -1):
 		return
 	zdx -= delta
-	zlbl.text = zas[zdx]
-	global.zability = zdx as global.Z_A
+	var unlocked = global.unlocked.zability[zdx]
+	zlbl.text = zas[zdx] if unlocked else str(global.costs.zability[zdx]) + " COINS"
+	global.zability = zdx as global.Z_A if unlocked else global.Z_A.NONE
+	$ui/beat/abiltiespanel/z/Panel/buy.disabled = unlocked
 	
 func change_x_ability(delta : int = 1) -> void:
 	if (xdx == 0 and delta == 1) or (xdx == xas.size() - 1 and delta == -1):
 		return
 	xdx -= delta
-	xlbl.text = xas[xdx]
-	global.xability = xdx as global.X_A
+	var unlocked = global.unlocked.xability[xdx]
+	xlbl.text = xas[xdx] if unlocked else str(global.costs.xability[xdx]) + " COINS"
+	global.xability = xdx as global.X_A if unlocked else global.X_A.NONE
+	$ui/beat/abiltiespanel/x/Panel/buy.disabled = unlocked
 
 func coin_tween():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
@@ -160,3 +164,19 @@ func coin_tween():
 		1.2
 	)
 	await tween.finished
+
+
+func _on_z_buy_pressed() -> void:
+	if global.coins >= global.costs.zability[zdx]:
+		global.coins -= global.costs.zability[zdx]
+		global.unlocked.zability[zdx] = true
+		zlbl.text = zas[zdx]
+		global.zability = zdx as global.Z_A
+
+
+func _on_x_buy_pressed() -> void:
+	if global.coins >= global.costs.xability[xdx]:
+		global.coins -= global.costs.xability[xdx]
+		global.unlocked.xability[xdx] = true
+		xlbl.text = xas[xdx]
+		global.xability = xdx as global.X_A

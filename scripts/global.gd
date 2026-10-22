@@ -9,14 +9,20 @@ var effectmodulate : CanvasModulate = null
 var player : Player
 var currentboss 
 var bosses_beaten : int = 0
-var coins : int = 0
+var coins : int = 19000
+
+# SPEEDRUNNING GOT 2919 COINS FROM ONE RUN (2 BOSSES)
 
 # abilities
 enum Z_A {NONE, LIGHTNING, BURN, SLASH}
 enum X_A {NONE, SPEED, DAMAGE, INVINCIBILITY}
 var costs : Dictionary = {
-	"zability": [],
-	"xability": []
+	"zability": [0, 650, 2300, 1350],
+	"xability": [0, 500, 2500, 1200]
+}
+var unlocked : Dictionary = {
+	"zability": [true, false, false, false],
+	"xability": [true, false, false, false]
 }
 var zability : Z_A = Z_A.NONE
 var xability : X_A = X_A.NONE
@@ -44,6 +50,6 @@ func endscreen(win : bool):
 	tween.tween_property(endscreen.get_node("Control"), "modulate:a", 1.0, 0.8)
 
 func calculate_rewards(time : float):
-	# ((100 * segments) * boss number) / time to beat boss
-	var rewards : int = int(((100 * global.player.snake.size()) * (bosses_beaten + 1)) / time)
+	# ((100 * segments) * boss number) / time to beat boss in minutes
+	var rewards : int = int(((100 * global.player.snake.size()) * (bosses_beaten + 1)) / (time / 60))
 	coins += rewards

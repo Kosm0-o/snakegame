@@ -32,8 +32,7 @@ func _ready() -> void:
 	start = true
 	
 func _process(delta: float) -> void:
-	if start:
-		timer += delta
+	timer += delta
 	time += delta
 	modulate = lerp(modulate, Color(1.0,1.0,1.0,0.7), 3 * delta)
 	if stuntime > 0.0:
@@ -203,7 +202,7 @@ func damage(amt : int, color : Color):
 	if hp <= 0:
 		global.boss_defeated.emit(timer)
 		dead = true
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/menu.tscn")
 		
 		
 

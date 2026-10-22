@@ -7,7 +7,7 @@ var time : float = 0.0
 var burn : bool = false
 
 func _ready() -> void:
-	global.boss_defeated.connect(queue_free)
+	global.boss_defeated.connect(func(time): queue_free())
 
 func _process(delta: float) -> void:
 	time += delta

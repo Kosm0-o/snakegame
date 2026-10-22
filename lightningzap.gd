@@ -9,7 +9,7 @@ var dmg : int = 1
 var playerpos : Vector2
 
 func _ready() -> void:
-	global.boss_defeated.connect(queue_free)
+	global.boss_defeated.connect(func(time): queue_free())
 	playerpos = global.player.snake.front() * global.tilesize + global.offset
 	length = sqrt(playerpos.distance_squared_to(global.currentboss.global_position)) 
 	for i in range(int(length / div)):

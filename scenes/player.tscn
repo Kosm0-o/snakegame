@@ -228,6 +228,7 @@ offset_bottom = 644.0
 theme_override_constants/separation = -70
 
 [node name="slow" type="Control" parent="ui/fx"]
+visible = false
 custom_minimum_size = Vector2(26.255, 44.28)
 layout_mode = 2
 tooltip_text = "Slowness"
@@ -260,6 +261,7 @@ mouse_filter = 2
 color = Color(0, 0.65098, 1, 1)
 
 [node name="fireball" type="Control" parent="ui/fx"]
+visible = false
 layout_mode = 2
 
 [node name="ColorRect5" type="ColorRect" parent="ui/fx/fireball"]
@@ -334,6 +336,7 @@ offset_bottom = 35.0
 color = Color(1, 1, 1, 0.596078)
 
 [node name="speed" type="Control" parent="ui/fx"]
+visible = false
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="ui/fx/speed"]
@@ -347,6 +350,7 @@ color = Color(0.275472, 0.847712, 1, 1)
 polygon = PackedVector2Array(31, 24, 2, -10, 2, 8, 16, 24, 2, 39, 2, 55)
 
 [node name="damage" type="Control" parent="ui/fx"]
+visible = false
 layout_mode = 2
 
 [node name="shape" type="Node2D" parent="ui/fx/damage"]
@@ -441,6 +445,7 @@ text = "2"
 label_settings = SubResource("LabelSettings_dqkch")
 
 [node name="shield" type="Control" parent="ui/fx"]
+visible = false
 layout_mode = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="ui/fx/shield"]

@@ -43,8 +43,7 @@ func _ready() -> void:
 	start = true
 
 func _process(delta: float) -> void:
-	if start:
-		timer += delta
+	timer += delta
 	modulate = lerp(modulate, Color(1.0,1.0,1.0,0.7), 3 * delta)
 	$shape/offset.position = lerp($shape/offset.position, Vector2(1, 261), 3 * delta) if lerps.position else $shape/offset.position
 	$shape/offset.rotation = lerpf($shape/offset.rotation, 0, 5 * delta) if lerps.rotation else $shape/offset.rotation

@@ -13,8 +13,8 @@ func _ready() -> void:
 	spawn_item()
 	match global.bosses_beaten:
 		0:
-			spawn_wasp()
-			#spawn_spider()
+			#spawn_wasp()
+			spawn_spider()
 		1:
 			spawn_wasp()
 		2:
