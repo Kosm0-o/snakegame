@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djqr72fk5e8f1"]
 
-[ext_resource type="Script" path="res://scripts/laserattack.gd" id="1_yeyul"]
+[ext_resource type="Script" uid="uid://snrhgs8phlmw" path="res://scripts/laserattack.gd" id="1_yeyul"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8p7ep"]
 blend_mode = 1

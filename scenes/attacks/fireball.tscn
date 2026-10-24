@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt5axmvg8id11"]
 
-[ext_resource type="Script" uid="uid://wm4hq8i15pje" path="res://scripts/fireball.gd" id="1_3s14c"]
+[ext_resource type="Script" uid="uid://wm4hq8i15pje" path="res://scripts/fireball.gd" id="1_l5qua"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_olwj8"]
 
@@ -37,7 +37,7 @@ size = Vector2(137, 53)
 
 [node name="fireball" type="Node2D"]
 scale = Vector2(0.6, 0.6)
-script = ExtResource("1_3s14c")
+script = ExtResource("1_l5qua")
 
 [node name="shape" type="Node2D" parent="."]
 scale = Vector2(2.475, 1)

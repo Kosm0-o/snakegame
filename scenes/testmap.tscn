@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlvqy3605ckc7"]
 
-[ext_resource type="Script" uid="uid://dgs4uk813lpda" path="res://gamemanager.gd" id="1_g8l4j"]
+[ext_resource type="Script" uid="uid://dgs4uk813lpda" path="res://scripts/gamemanager.gd" id="1_efggw"]
 [ext_resource type="PackedScene" uid="uid://dn1apjauo1a7b" path="res://scenes/player.tscn" id="2_6fk1w"]
 [ext_resource type="AudioStream" uid="uid://bt8vugkklqixj" path="res://sounds/482872_KzX---Stalemate.mp3" id="4_8qn3e"]
 [ext_resource type="AudioStream" uid="uid://yr0kfe2pscc6" path="res://sounds/osu-hit-sound.mp3" id="5_mxay4"]
@@ -21,7 +21,7 @@ blend_mode = 1
 
 [node name="testmap" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_g8l4j")
+script = ExtResource("1_efggw")
 
 [node name="background" type="Node2D" parent="."]
 process_mode = 3

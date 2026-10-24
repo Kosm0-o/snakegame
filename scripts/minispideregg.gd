@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		spawn_minispider()
 
 func spawn_minispider():
-	var minispider = preload("res://minispider.tscn").instantiate()
+	var minispider = preload("res://scenes/attacks/minispider.tscn").instantiate()
 	get_tree().current_scene.add_child(minispider)
 	minispider.rotation_degrees = randi_range(0, 3) * 90
 	minispider.position = position

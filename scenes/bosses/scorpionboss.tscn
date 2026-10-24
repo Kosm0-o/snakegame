@@ -1,0 +1,444 @@
+[gd_scene load_steps=17 format=3 uid="uid://46lwn8pjljbt"]
+
+[ext_resource type="Script" uid="uid://cmhqknwtgpoed" path="res://scripts/waspboss.gd" id="1_qwq1o"]
+[ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="2_wkj4y"]
+[ext_resource type="AudioStream" uid="uid://dqifmef8y3nyd" path="res://sounds/popsfx.mp3" id="3_0luui"]
+[ext_resource type="AudioStream" uid="uid://bbdhv8v2ce4ob" path="res://sounds/laserreverb.mp3" id="4_sjvy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dkiy"]
+size = Vector2(103.03, 104.545)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psgc1"]
+size = Vector2(63.6364, 91.6667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_184ps"]
+size = Vector2(10.6061, 25.7576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4cpt"]
+size = Vector2(68, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or21k"]
+size = Vector2(43, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kqy47"]
+line_spacing = -33.445
+font = ExtResource("2_wkj4y")
+font_size = 111
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.588235)
+shadow_offset = Vector2(5.855, 1)
+
+[sub_resource type="Animation" id="Animation_184ps"]
+resource_name = "buzzbombs"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"buzzbombs"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_i4cpt"]
+resource_name = "dash"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dash"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kqy47"]
+resource_name = "ready"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_psgc1"]
+resource_name = "stingerslam"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stinger_slam"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6dkiy"]
+resource_name = "stingerspray"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stingerspray"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkn7w"]
+_data = {
+&"buzzbombs": SubResource("Animation_184ps"),
+&"dash": SubResource("Animation_i4cpt"),
+&"ready": SubResource("Animation_kqy47"),
+&"stingerslam": SubResource("Animation_psgc1"),
+&"stingerspray": SubResource("Animation_6dkiy")
+}
+
+[node name="waspboss" type="Node2D"]
+process_mode = 3
+z_index = 5
+script = ExtResource("1_qwq1o")
+
+[node name="shape" type="Node2D" parent="."]
+scale = Vector2(0.66, 0.66)
+
+[node name="stinger" type="Polygon2D" parent="shape"]
+position = Vector2(-32.0303, -1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(31, -79, 28, -90, 31, -115, 34, -90)
+
+[node name="legs" type="Node2D" parent="shape"]
+position = Vector2(-30.0303, -7)
+
+[node name="leg" type="Line2D" parent="shape/legs"]
+position = Vector2(-8, -6)
+points = PackedVector2Array(-39, 1, -25, 36, -8, 26, 13, 42)
+width = 6.0
+default_color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="leg2" type="Line2D" parent="shape/legs"]
+position = Vector2(67, -5)
+rotation = 3.14159
+scale = Vector2(1, -1)
+points = PackedVector2Array(-39, 1, -25, 36, -8, 26, 13, 42)
+width = 6.0
+default_color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="leg3" type="Line2D" parent="shape/legs"]
+position = Vector2(67, 103)
+rotation = 3.14159
+points = PackedVector2Array(-16, -1, -11, 27, 2, 24, 13, 42)
+width = 6.0
+default_color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="leg4" type="Line2D" parent="shape/legs"]
+position = Vector2(-10, 103)
+rotation = 3.14159
+scale = Vector2(-1, 1)
+points = PackedVector2Array(-16, -1, -11, 27, 2, 24, 13, 42)
+width = 6.0
+default_color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="backbody" type="ColorRect" parent="shape"]
+offset_left = -53.0303
+offset_top = -90.0
+offset_right = 49.9697
+offset_bottom = 13.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 82.0
+offset_right = 61.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/backbody/ColorRect"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -9.0
+offset_right = 27.0
+offset_bottom = 9.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape/backbody/ColorRect"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -1.0
+offset_bottom = 10.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape/backbody/ColorRect"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 37.0
+offset_bottom = 10.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 103.0
+offset_bottom = 74.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/backbody/ColorRect4"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = -10.0
+offset_right = 73.0
+offset_bottom = 11.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 103.0
+offset_bottom = 30.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/backbody/ColorRect7"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = -4.0
+offset_right = 60.0
+offset_bottom = 4.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape/backbody/ColorRect7"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 4.0
+offset_right = 63.0
+offset_bottom = 13.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 89.0
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 41.0
+offset_right = 94.0
+offset_bottom = 52.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 89.0
+offset_right = 14.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 41.0
+offset_right = 20.0
+offset_bottom = 52.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 31.0
+offset_bottom = 19.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="shape/backbody"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 12.0
+offset_right = 80.0
+offset_bottom = 19.0
+color = Color(0, 0, 0, 1)
+
+[node name="midbody" type="ColorRect" parent="shape"]
+offset_left = -33.0303
+offset_top = 13.0
+offset_right = 30.9697
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="shape/midbody"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 9.0
+offset_right = 25.0
+offset_bottom = 20.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="shape/midbody"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 9.0
+offset_right = 58.0
+offset_bottom = 20.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="shape/midbody"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 34.0
+offset_right = 35.0
+offset_bottom = 56.0
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="shape/midbody"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 51.0
+offset_right = 8.0
+offset_bottom = 69.0
+rotation = -0.585528
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="shape/midbody"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 66.0
+rotation = 0.584685
+color = Color(0.901961, 0.827451, 0, 1)
+
+[node name="head" type="ColorRect" parent="shape"]
+offset_left = -24.0303
+offset_top = 71.0
+offset_right = 22.9697
+offset_bottom = 105.0
+color = Color(0, 0, 0, 1)
+
+[node name="eyes" type="Node2D" parent="shape"]
+position = Vector2(-33.0303, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="shape/eyes"]
+position = Vector2(14, 66)
+scale = Vector2(0.9375, 0.9375)
+polygon = PackedVector2Array(0, 20, 0, 36, 16, 36, 16, 28)
+
+[node name="Polygon2D2" type="Polygon2D" parent="shape/eyes"]
+position = Vector2(52, 66)
+scale = Vector2(-0.938, 0.938)
+polygon = PackedVector2Array(0, 20, 0, 36, 16, 36, 16, 28)
+
+[node name="antennae" type="Node2D" parent="shape"]
+position = Vector2(-33.0303, 0)
+
+[node name="Line2D" type="Line2D" parent="shape/antennae"]
+points = PackedVector2Array(23, 81, 17, 95, 23, 123)
+width = 4.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="shape/antennae"]
+position = Vector2(65, 0)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(23, 81, 17, 95, 23, 123)
+width = 4.75
+default_color = Color(0, 0, 0, 1)
+
+[node name="wings" type="Node2D" parent="shape"]
+modulate = Color(1, 1, 1, 0.447059)
+position = Vector2(-33.0303, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="shape/wings"]
+color = Color(0.901961, 0.827451, 0, 1)
+polygon = PackedVector2Array(16, 37, -10, -72, -77, -90, 2, 37)
+
+[node name="Polygon2D2" type="Polygon2D" parent="shape/wings"]
+position = Vector2(64, 0)
+scale = Vector2(-1, 1)
+color = Color(0.901961, 0.827451, 0, 1)
+polygon = PackedVector2Array(16, 37, -10, -72, -77, -90, 2, 37)
+
+[node name="hitbox" type="Area2D" parent="shape"]
+position = Vector2(-33.0303, 0)
+collision_layer = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shape/hitbox"]
+position = Vector2(31.8182, -38.6364)
+shape = SubResource("RectangleShape2D_6dkiy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="shape/hitbox"]
+position = Vector2(31.8182, 59.4697)
+shape = SubResource("RectangleShape2D_psgc1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="shape/hitbox"]
+position = Vector2(32.5758, -103.788)
+shape = SubResource("RectangleShape2D_184ps")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, -56)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 30.5)
+shape = SubResource("RectangleShape2D_i4cpt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 96)
+shape = SubResource("RectangleShape2D_or21k")
+
+[node name="introtext" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="introtext"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 650.0
+text = "Chapter 2:
+Queen Wasp"
+label_settings = SubResource("LabelSettings_kqy47")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="attackplayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mkn7w")
+}
+
+[node name="egg" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0luui")
+
+[node name="laser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sjvy3")
+
+[node name="stingerpos" type="Marker2D" parent="."]
+position = Vector2(-0.444065, -59.0322)
+
+[connection signal="area_entered" from="shape/hitbox" to="." method="_on_hitbox_area_entered"]

@@ -9,7 +9,28 @@ const bpm : float = 104.0
 
 var transtiles : Array = []
 
+var zas : Array = []
+var xas : Array = []
+@onready var zlbl: Label = $ui/beat/abiltiespanel/z/Label
+@onready var xlbl: Label = $ui/beat/abiltiespanel/x/Label
+var zdx : int = 0
+var xdx : int = 0
+
+var pastcoins : int = 0
+
+
+
 func _ready() -> void:
+	for c in find_children("*", "Control", true, false):
+		c.focus_mode = Control.FOCUS_NONE
+	zas = global.Z_A.keys()
+	xas = global.X_A.keys()
+	zlbl.text = zas.front()
+	xlbl.text = xas.front()
+	$ui/beat/abiltiespanel/z/up.pressed.connect(change_z_ability)
+	$ui/beat/abiltiespanel/z/down.pressed.connect(change_z_ability.bind(-1))
+	$ui/beat/abiltiespanel/x/up.pressed.connect(change_x_ability)
+	$ui/beat/abiltiespanel/x/down.pressed.connect(change_x_ability.bind(-1))
 	for x in range(global.mapsize.x - 75, global.mapsize.x + 1):
 		for y in range(global.mapsize.y - 50, global.mapsize.y + 1):
 				var rect = ColorRect.new()
@@ -39,6 +60,7 @@ func _ready() -> void:
 		area.area_entered.connect(_set_head.bind(b, p))
 
 func _process(delta: float) -> void:
+
 	if pseudoplayer.start and notstarttweened:
 		starttexttween()
 	time += delta
@@ -52,10 +74,21 @@ func _process(delta: float) -> void:
 		beat = curbeat
 		$ui/beat.position += Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	
+	$ui/beat/coins/Panel/coin.scale.x = sin(3 * time) * 1.0
+	
+	if pastcoins != global.coins:
+		coin_tween()
+	
+	
+	
+	pastcoins = global.coins
+	
 	if transtiles.is_empty(): return
 	for i in range(25):
 		if transtiles.is_empty(): break
 		spawn_next_tile()
+	
+	
 
 func spawn_next_tile():
 	$ui/transition/tilesound.play()
@@ -92,7 +125,7 @@ func _on_play_area_entered(area: Area2D) -> void:
 			transtiles.append(Vector2i(x, y))
 	while not transtiles.is_empty():
 		await get_tree().process_frame
-	get_tree().call_deferred("change_scene_to_file","res://game.tscn")
+	get_tree().call_deferred("change_scene_to_file","res://scenes/game.tscn")
 
 func _on_quit_area_entered(area: Area2D) -> void:
 	get_tree().quit()
@@ -102,3 +135,48 @@ func _on_abilities_area_entered(area: Area2D) -> void:
 
 func _on_exit_pressed() -> void:
 	abilities_tween(true)
+
+
+func change_z_ability(delta : int = 1) -> void:
+	if (zdx == 0 and delta == 1) or (zdx == zas.size() - 1 and delta == -1):
+		return
+	zdx -= delta
+	var unlocked = global.unlocked.zability[zdx]
+	zlbl.text = zas[zdx] if unlocked else str(global.costs.zability[zdx]) + " COINS"
+	global.zability = zdx as global.Z_A if unlocked else global.Z_A.NONE
+	$ui/beat/abiltiespanel/z/Panel/buy.disabled = unlocked
+	
+func change_x_ability(delta : int = 1) -> void:
+	if (xdx == 0 and delta == 1) or (xdx == xas.size() - 1 and delta == -1):
+		return
+	xdx -= delta
+	var unlocked = global.unlocked.xability[xdx]
+	xlbl.text = xas[xdx] if unlocked else str(global.costs.xability[xdx]) + " COINS"
+	global.xability = xdx as global.X_A if unlocked else global.X_A.NONE
+	$ui/beat/abiltiespanel/x/Panel/buy.disabled = unlocked
+
+func coin_tween():
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_method(
+		func(val): $ui/beat/coins/Panel/Label.text = str(val),
+		pastcoins,
+		global.coins,
+		1.2
+	)
+	await tween.finished
+
+
+func _on_z_buy_pressed() -> void:
+	if global.coins >= global.costs.zability[zdx]:
+		global.coins -= global.costs.zability[zdx]
+		global.unlocked.zability[zdx] = true
+		zlbl.text = zas[zdx]
+		global.zability = zdx as global.Z_A
+
+
+func _on_x_buy_pressed() -> void:
+	if global.coins >= global.costs.xability[xdx]:
+		global.coins -= global.costs.xability[xdx]
+		global.unlocked.xability[xdx] = true
+		xlbl.text = xas[xdx]
+		global.xability = xdx as global.X_A

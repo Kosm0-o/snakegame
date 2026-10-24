@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 func _spawn_web():
 	global.sendingweb = false
 	global.webcount += 1
-	var web = preload("res://spiderweb.tscn").instantiate()
+	var web = preload("res://scenes/attacks/spiderweb.tscn").instantiate()
 	web.name = "spiderweb" + str(global.webcount)
 	web.global_position = targetpos * global.tilesize + global.offset
 	get_tree().current_scene.call_deferred("add_child", web)

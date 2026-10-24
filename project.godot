@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="snakegame"
-run/main_scene="uid://cy0mqddri741t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

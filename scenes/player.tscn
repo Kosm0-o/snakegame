@@ -266,6 +266,7 @@ layout_mode = 2
 
 [node name="ColorRect5" type="ColorRect" parent="ui/fx/fireball"]
 material = SubResource("CanvasItemMaterial_dqkch")
+layout_mode = 0
 offset_left = -14.0
 offset_top = 2.0
 offset_right = 30.0
@@ -273,6 +274,7 @@ offset_bottom = 46.0
 color = Color(1, 0, 0, 0.290196)
 
 [node name="ColorRect4" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = -12.0
 offset_top = 5.0
 offset_right = 28.0
@@ -280,6 +282,7 @@ offset_bottom = 43.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect6" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = -14.0
 offset_top = 20.0
 offset_right = -11.0
@@ -287,6 +290,7 @@ offset_bottom = 40.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect9" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 4.0
 offset_right = 29.0
@@ -294,6 +298,7 @@ offset_bottom = 24.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = -7.0
 offset_right = 17.0
@@ -301,6 +306,7 @@ offset_bottom = 8.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect8" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = -15.0
 offset_right = 12.0
@@ -308,6 +314,7 @@ offset_bottom = -2.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect10" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = 6.0
 offset_top = -20.0
 offset_right = 11.0
@@ -316,6 +323,7 @@ rotation = 0.16057
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = -9.0
 offset_top = 6.0
 offset_right = 25.0
@@ -323,6 +331,7 @@ offset_bottom = 38.0
 color = Color(1, 0.462745, 0, 0.819608)
 
 [node name="ColorRect2" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_left = -4.0
 offset_top = 16.0
 offset_right = 21.0
@@ -330,6 +339,7 @@ offset_bottom = 37.0
 color = Color(1, 1, 0, 0.658824)
 
 [node name="ColorRect3" type="ColorRect" parent="ui/fx/fireball"]
+layout_mode = 0
 offset_top = 23.0
 offset_right = 16.0
 offset_bottom = 35.0

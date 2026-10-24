@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://cy0mqddri741t"]
 
-[ext_resource type="Script" uid="uid://40hhrfmk3s15" path="res://menu.gd" id="1_lti8b"]
-[ext_resource type="Script" uid="uid://4dnil2uhngox" path="res://pseudoplayer.gd" id="2_ouk20"]
-[ext_resource type="PackedScene" uid="uid://lafhpf1ilths" path="res://additive.tscn" id="3_mae5d"]
+[ext_resource type="Script" uid="uid://40hhrfmk3s15" path="res://scripts/menu.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://4dnil2uhngox" path="res://scripts/pseudoplayer.gd" id="2_ouk20"]
+[ext_resource type="PackedScene" uid="uid://cyht5y0k2b8qf" path="res://scenes/additive.tscn" id="3_g3eks"]
 [ext_resource type="FontFile" uid="uid://dtnc2bin58cgk" path="res://Jersey10-Regular.ttf" id="4_4hy44"]
-[ext_resource type="AudioStream" uid="uid://d0jg55k1ogo62" path="res://osu-hit-sound.mp3" id="5_l48gv"]
-[ext_resource type="AudioStream" uid="uid://crsusok857on1" path="res://Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3" id="5_ytr4m"]
+[ext_resource type="AudioStream" uid="uid://yr0kfe2pscc6" path="res://sounds/osu-hit-sound.mp3" id="5_v86rl"]
+[ext_resource type="AudioStream" uid="uid://dq7ebv1yat71c" path="res://sounds/Retro Video Game Snake Invasion (Chiptune Sound) Background Music  Bjorn Lynne @ Shockwave-Sound.mp3" id="6_13sgg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mae5d"]
 size = Vector2(16, 16)
@@ -173,35 +173,25 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pseudoplayer/segments/root/collisionarea"]
 shape = SubResource("RectangleShape2D_mae5d")
 
-[node name="additive" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive1" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive2" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive2" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive3" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive3" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive4" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive4" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive5" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive5" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive6" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive6" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive7" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive7" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive8" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive8" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive9" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive9" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
-[node name="additive10" parent="pseudoplayer/segments" instance=ExtResource("3_mae5d")]
-position = Vector2(-20, 0)
+[node name="additive10" parent="pseudoplayer/segments" instance=ExtResource("3_g3eks")]
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -822,6 +812,7 @@ offset_right = 265.0
 offset_bottom = 40.0
 
 [node name="buy" type="Button" parent="ui/beat/abiltiespanel/x/Panel"]
+layout_mode = 0
 offset_right = 220.0
 offset_bottom = 41.0
 tooltip_text = "More Abilities Soon! (press x key)"
@@ -945,7 +936,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="tilesound" type="AudioStreamPlayer2D" parent="ui/transition"]
-stream = ExtResource("5_l48gv")
+stream = ExtResource("5_v86rl")
 volume_db = -3.0
 
 [node name="teleportareas" type="Node2D" parent="."]
@@ -1012,7 +1003,7 @@ position = Vector2(80, 540)
 shape = SubResource("RectangleShape2D_kk3ma")
 
 [node name="bgmusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_ytr4m")
+stream = ExtResource("6_13sgg")
 volume_db = -5.0
 autoplay = true
 

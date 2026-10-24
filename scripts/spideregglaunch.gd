@@ -26,7 +26,7 @@ func calc_arc_vel(start : Vector2, end : Vector2, time : float, grav : float):
 
 func _spawn_egg():
 	global.eggcount += 1
-	var egg = preload("res://minispideregg.tscn").instantiate()
+	var egg = preload("res://scenes/attacks/minispideregg.tscn").instantiate()
 	egg.name = "minispideregg" + str(global.eggcount)
 	egg.global_position = targetpos * global.tilesize + global.offset
 	get_tree().current_scene.call_deferred("add_child", egg)

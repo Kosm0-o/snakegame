@@ -62,7 +62,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func create_toxic_puddle():
 	global.puddlecount += 1
-	var toxicpuddle = preload("res://toxicpuddle.tscn").instantiate()
+	var toxicpuddle = preload("res://scenes/attacks/toxicpuddle.tscn").instantiate()
 	toxicpuddle.name = "toxicpuddle" + str(global.puddlecount)
 	get_tree().current_scene.add_child(toxicpuddle)
 	toxicpuddle.global_position = global_position

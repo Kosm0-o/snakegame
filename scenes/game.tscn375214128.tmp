@@ -1,0 +1,176 @@
+[gd_scene load_steps=7 format=3 uid="uid://rnagl74e5kcs"]
+
+[ext_resource type="PackedScene" uid="uid://dn1apjauo1a7b" path="res://scenes/player.tscn" id="1_80nbo"]
+[ext_resource type="AudioStream" uid="uid://bt8vugkklqixj" path="res://sounds/482872_KzX---Stalemate.mp3" id="4_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://yr0kfe2pscc6" path="res://sounds/osu-hit-sound.mp3" id="5_7jktm"]
+
+[sub_resource type="GDScript" id="GDScript_lnu2h"]
+script/source = "extends Node2D
+
+var tile_colors : Array = [
+	[Color(\"#280042\"), Color(\"#140023\")],
+	[Color(\"#654e00\"), Color(\"#2b1e00\")]
+	
+]
+var tiles : Array = []
+
+func _ready() -> void:
+	global.effectmodulate = $EffectMod
+	randomize()
+	spawn_item()
+	match global.bosses_beaten:
+		0:
+			#spawn_wasp()
+			spawn_spider()
+		1:
+			spawn_wasp()
+		2:
+			spawn_scorpion()
+	for x in range(global.mapsize.x - 75, global.mapsize.x + 1):
+		for y in range(global.mapsize.y - 50, global.mapsize.y + 1):
+			tiles.append(Vector2i(x, y))
+
+func _process(delta: float) -> void:
+	if tiles.is_empty(): return
+	for i in range(100):
+		if tiles.is_empty(): break
+		spawn_next_tile()
+		
+
+func spawn_next_tile():
+	$tilesound.play()
+	var pos = tiles.pop_front()
+	var rect = ColorRect.new()
+	if pos.x % 2 == 0:
+		rect.color = tile_colors[global.bosses_beaten][0] if pos.y % 2 == 0 else tile_colors[global.bosses_beaten][1]
+	else:
+		rect.color = tile_colors[global.bosses_beaten][0] if pos.y % 2 == 1 else tile_colors[global.bosses_beaten][1]
+	rect.size = Vector2i.ONE * global.tilesize
+	rect.position = pos * global.tilesize
+	$background.add_child(rect)
+	
+
+func spawn_item():
+	var item = preload(\"res://scenes/item.tscn\").instantiate()
+	call_deferred(\"add_child\", item)
+	item.position = Vector2i(randi_range(1, global.mapsize.x - 1), randi_range(1, global.mapsize.y - 1)) * global.tilesize + global.offset
+
+func nextboss():
+	global.bosses_beaten += 1
+	get_tree().reload_current_scene()
+
+func spawn_spider():
+	var spider = preload(\"res://scenes/bosses/spiderboss.tscn\").instantiate()
+	add_child(spider)
+	spider.global_position = Vector2(576.0, 26.0)
+
+func spawn_wasp():
+	var wasp = preload(\"res://scenes/bosses/waspboss.tscn\").instantiate()
+	wasp.markers = $markers
+	add_child(wasp)
+	
+
+func spawn_scorpion():
+	pass
+
+func _on_exitdetector_area_entered(area: Area2D) -> void:
+	area.get_parent().get_parent().get_parent()._die(area)
+"
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 4.5
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_intensity = 0.17
+glow_strength = 0.64
+glow_bloom = 0.43
+glow_blend_mode = 0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_feb5d"]
+blend_mode = 1
+
+[node name="game" type="Node2D"]
+process_mode = 3
+script = SubResource("GDScript_lnu2h")
+
+[node name="background" type="Node2D" parent="."]
+process_mode = 3
+z_index = -5
+position = Vector2(-1, 0)
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+offset_left = -28.0
+offset_top = -26.0
+offset_right = 1170.0
+offset_bottom = 709.0
+color = Color(0, 0, 0, 1)
+
+[node name="player" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(30, 31)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e2o6t")
+
+[node name="exitdetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="exitdetector"]
+polygon = PackedVector2Array(-9, -11, 1161, -11, 1162, 663, -8, 663, -8, 750, 1213, 747, 1215, -89, -159, -106, -146, 750, -8, 750)
+
+[node name="testrect" type="ColorRect" parent="."]
+offset_left = -280.0
+offset_top = 62.0
+offset_right = -240.0
+offset_bottom = 102.0
+color = Color(0.39414, 0.306185, 0, 1)
+
+[node name="EffectMod" type="CanvasModulate" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 326)
+zoom = Vector2(0.99, 0.97)
+
+[node name="borderfx" type="Polygon2D" parent="."]
+z_index = 6
+material = SubResource("CanvasItemMaterial_feb5d")
+scale = Vector2(0.985, 0.985)
+color = Color(0.205147, 0.000117644, 0.256704, 1)
+polygon = PackedVector2Array(-2.72156, -3.76358, 1171.86, -3.764, 1171.8, 666.702, -2.722, 666.7, 0, 749, 1213, 747, 1215, -89, -159, -106, -146, 750, 0, 750)
+
+[node name="bgmusic" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("4_fc0e3")
+volume_db = 3.0
+autoplay = true
+
+[node name="tilesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7jktm")
+volume_db = -3.0
+
+[node name="markers" type="Node2D" parent="."]
+
+[node name="origin" type="Marker2D" parent="markers"]
+position = Vector2(576, 0)
+gizmo_extents = 171.0
+
+[node name="dash" type="Node2D" parent="markers"]
+
+[node name="bottom" type="Marker2D" parent="markers/dash"]
+position = Vector2(576, 648)
+gizmo_extents = 171.0
+
+[node name="right" type="Marker2D" parent="markers/dash"]
+position = Vector2(1152, 324)
+gizmo_extents = 171.0
+
+[node name="top" type="Marker2D" parent="markers/dash"]
+position = Vector2(576, 0)
+gizmo_extents = 171.0
+
+[node name="left" type="Marker2D" parent="markers/dash"]
+position = Vector2(0, 324)
+gizmo_extents = 171.0
+
+[connection signal="area_entered" from="exitdetector" to="." method="_on_exitdetector_area_entered"]
